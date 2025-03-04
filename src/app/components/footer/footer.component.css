@@ -1,0 +1,113 @@
+#containerFooter {
+  background-color: #112a16;
+  padding: 20px 60px 10px;
+  color: #ffead4;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#containerFooter h2 {
+  font-size: 50px;
+  margin-bottom: 50px;
+}
+
+.enlaces {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.enlaces > div {
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+}
+
+/* Primer enlace: Consulta con nosotros */
+.enlaces > div:first-child {
+  background-color: #ffead4;
+}
+
+.enlaces > div:first-child a {
+  display: block;
+  padding: 15px 30px;
+  font-size: 20px;
+  text-decoration: none;
+  color: #112a16;
+  border-radius: 25px;
+}
+
+/* Segundo enlace: Acceso usuario */
+.enlaces > div:nth-child(2) a {
+  display: block;
+  padding: 15px 30px;
+  font-size: 20px;
+  text-decoration: none;
+  color: #ffead4;
+  border-radius: 25px;
+  padding-right: 70px;
+  z-index: 1;
+}
+
+/* Flecha */
+.enlaces > div:nth-child(2) .arrow {
+  position: relative;
+  left: -60px;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #ffead4;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+.enlaces > div:nth-child(2):hover .arrow {
+  transform: translateX(10px);
+}
+
+/* Imagen de la flecha */
+.arrow img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Sección de información en grid para mejorar la responsividad */
+.container-info {
+  display: flex;
+  margin: 50px 40px 0;
+  padding: 20px;
+  /* border: 3px solid #ffead4; */
+}
+
+/* Estilos para cada bloque de información */
+.container-info > div {
+  padding: 10px;
+  width: max-content;
+  height: max-content;
+  margin: 0 40px;
+  /* border: 2px solid yellow; */
+}
+
+/* Títulos dentro de la información */
+.container-info h3 {
+  font-size: 25px;
+  margin: 0 0 10px;
+}
+
+/* Estilos para párrafos u otros elementos en cada bloque */
+.container-info p {
+  margin: 0 0 15px;
+  line-height: 1.5;
+}
+
+.container-info > div:nth-child(3) {
+  width: 300px;
+}
+/* Los enlaces de las Redes Sociales */
+.container-info:nth-child(3) a {
+  float: left;
+  padding: 10px 10px 0 20px;
+}
+.container-info a > img {
+  width: 50px;
+  height: 50px;
+}

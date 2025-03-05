@@ -4,7 +4,7 @@
   padding: 0;
   background: #2e7d32; /* Color que recuerda la pista de pádel */
   font-family: Arial, sans-serif;
-  color: #FFF5E9;
+  color: #fff5e9;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,29 +29,28 @@
   position: relative;
   width: 300px;
   height: 200px;
-  border: 2px dashed #FFF5E9;
+  border: 2px dashed #fff5e9;
   border-radius: 10px;
   overflow: hidden;
 }
 
+
 /* Estilo de la pala (paddle) */
 .paddle {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  width: 120px;
-  height: 20px;
-  background-color: #FFF5E9;
-  border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-  transform: translateX(-50%);
+  height: 100%;
+  background-image: url("https://set-solution.com/cdn/shop/files/HEAD-EXTREMEPRO-COELLO.webp?v=1731261164");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 150px;
+  background-position-x: 75px;
+  background-position-y: 30px;
   animation: paddleSwing 2s infinite ease-in-out;
 }
 
 /* Estilo de la pelota */
 .ball {
   position: absolute;
-  bottom: 40px;
+  bottom: 120px;
   left: 50%;
   width: 20px;
   height: 20px;
@@ -62,43 +61,57 @@
   animation: ballBounce 2s infinite ease-in-out;
 }
 
-/* Animaciones */
-@keyframes paddleSwing {
-  0% {
-    transform: translateX(-50%) rotate(0deg);
-  }
-  25% {
-    transform: translateX(-50%) rotate(10deg);
-  }
-  50% {
-    transform: translateX(-50%) rotate(0deg);
-  }
-  75% {
-    transform: translateX(-50%) rotate(-10deg);
-  }
-  100% {
-    transform: translateX(-50%) rotate(0deg);
-  }
-}
 @keyframes ballBounce {
   0% {
-    bottom: 40px;
     transform: translateX(-50%) scale(1);
+    left: 150px;
   }
-  25% {
-    bottom: 160px;
-    transform: translateX(-50%) scale(1.1);
+  16.6% {
+    transform: translateX(-50%) scale(1.5);
+  }
+  33% {
+    transform: translateX(-50%) scale(1);
+    left: 100px;
   }
   50% {
-    bottom: 40px;
-    transform: translateX(-50%) scale(1);
+    transform: translateX(-50%) scale(2);
   }
-  75% {
-    bottom: 100px;
-    transform: translateX(-50%) scale(0.9);
+  66% {
+    transform: translateX(-50%) scale(1);
+    left: 200px;
+  }
+  83% {
+    transform: translateX(-50%) scale(1.5);
   }
   100% {
-    bottom: 40px;
     transform: translateX(-50%) scale(1);
+    left: 150px;
+  }
+}
+@keyframes paddleSwing {
+  0% {
+    transform: translateX(0%) scale(1);
+    background-position-x: 75px;
+  }
+  16.6% {
+    transform: translateX(0%) scale(1);
+  }
+  33% {
+    transform: translateX(0%) scale(1);
+    background-position-x: 25px;
+  }
+  50% {
+    transform: translateX(0%) scale(1);
+  }
+  66% {
+    transform: translateX(0%) scale(1);
+    background-position-x: 125px;
+  }
+  83% {
+    transform: translateX(0%) scale(1);
+  }
+  100% {
+    transform: translateX(0%) scale(1);
+    background-position-x: 75px;
   }
 }

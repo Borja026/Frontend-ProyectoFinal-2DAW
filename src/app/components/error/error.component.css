@@ -1,0 +1,104 @@
+/* Estilos generales para el contenedor */
+.container {
+  margin: 0;
+  padding: 0;
+  background: #2e7d32; /* Color que recuerda la pista de pádel */
+  font-family: Arial, sans-serif;
+  color: #FFF5E9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%; /* Para ocupar toda la ventana, puedes ajustar este valor */
+}
+
+/* Estilos del mensaje de error */
+.error-message h1 {
+  font-size: 8rem;
+  margin: 0;
+}
+.error-message p {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+/* Contenedor de la animación */
+.animation {
+  margin-top: 20px;
+  position: relative;
+  width: 300px;
+  height: 200px;
+  border: 2px dashed #FFF5E9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Estilo de la pala (paddle) */
+.paddle {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  width: 120px;
+  height: 20px;
+  background-color: #FFF5E9;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transform: translateX(-50%);
+  animation: paddleSwing 2s infinite ease-in-out;
+}
+
+/* Estilo de la pelota */
+.ball {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: yellow;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transform: translateX(-50%);
+  animation: ballBounce 2s infinite ease-in-out;
+}
+
+/* Animaciones */
+@keyframes paddleSwing {
+  0% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-50%) rotate(10deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  75% {
+    transform: translateX(-50%) rotate(-10deg);
+  }
+  100% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+}
+@keyframes ballBounce {
+  0% {
+    bottom: 40px;
+    transform: translateX(-50%) scale(1);
+  }
+  25% {
+    bottom: 160px;
+    transform: translateX(-50%) scale(1.1);
+  }
+  50% {
+    bottom: 40px;
+    transform: translateX(-50%) scale(1);
+  }
+  75% {
+    bottom: 100px;
+    transform: translateX(-50%) scale(0.9);
+  }
+  100% {
+    bottom: 40px;
+    transform: translateX(-50%) scale(1);
+  }
+}

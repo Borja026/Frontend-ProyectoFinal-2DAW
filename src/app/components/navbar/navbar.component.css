@@ -1,0 +1,59 @@
+div#navbar {
+  background-color: #112a16;
+  width: 1790px;
+  height: 118px;
+  color: #ffead4;
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+div#navbar div:nth-child(1) {
+  width: max-content;
+  height: max-content;
+  font-size: 30px;
+  position: relative;
+  left: 30px;
+  top: 43px;
+}
+
+div#logo {
+  width: max-content;
+  position: absolute;
+  left: 830px;
+  top: 0px;
+}
+
+div#navbar div:nth-child(2) a,
+div#navbar div:nth-child(2) img {
+  display: block;
+}
+div#navbar div:nth-child(2) img {
+  width: 130px;
+}
+
+/* Menú principal */
+div#menuPrincipal {
+  width: max-content;
+  height: max-content;
+  position: absolute;
+  right: 20px;
+  top: 40px;
+}
+
+div#menuPrincipal > ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+div#menuPrincipal > ul li {
+  padding: 10px 15px;
+  margin: 0 10px;
+}
+
+div#menuPrincipal > ul li a {
+  text-decoration: none;
+  color: #ffead4;
+}

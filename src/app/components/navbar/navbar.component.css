@@ -1,41 +1,41 @@
+/* Estilos base para pantallas grandes */
 div#navbar {
   background-color: #112a16;
-  width: 1790px;
+  max-width: 1920px;
   height: 116px;
   color: #ffead4;
   position: relative;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
 }
 
 div#navbar div:nth-child(1) {
-  width: max-content;
-  height: max-content;
   font-size: 30px;
-  position: relative;
-  left: 30px;
-  top: 43px;
 }
 
 div#logo {
   width: max-content;
   position: absolute;
-  left: 830px;
-  top: 0px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
 }
 
 div#navbar div:nth-child(2) a,
 div#navbar div:nth-child(2) img {
   display: block;
 }
+
 div#navbar div:nth-child(2) img {
   width: 130px;
 }
 
 /* Menú principal */
 div#menuPrincipal {
-  width: max-content;
-  height: max-content;
   position: absolute;
   right: 20px;
   top: 40px;
@@ -56,4 +56,83 @@ div#menuPrincipal > ul li {
 div#menuPrincipal > ul li a {
   text-decoration: none;
   color: #ffead4;
+}
+
+/* Media Query para tablets en vertical (max-width: 1024px) */
+@media (max-width: 1024px) {
+  /* Disposición vertical */
+  div#navbar {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 15px 20px;
+  }
+  div#navbar div:nth-child(1) {
+    font-size: 24px;
+    position: static;
+    margin-bottom: 10px;
+  }
+  /* Logo en flujo natural */
+  div#logo {
+    position: static;
+    transform: none;
+    margin-bottom: 10px;
+  }
+  /* Menú vertical */
+  div#menuPrincipal {
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+  }
+  div#menuPrincipal > ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  div#menuPrincipal > ul li {
+    padding: 10px;
+    margin: 5px 0;
+  }
+}
+
+/* Media Query para dispositivos en orientación horizontal (tablet/móvil en landscape) */
+@media (orientation: landscape) and (max-width: 1024px) {
+  /* Volvemos al layout horizontal */
+  div#navbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 116px;
+    padding: 0 30px;
+  }
+  /* Ubicar el título a la izquierda */
+  div#navbar div:nth-child(1) {
+    font-size: 24px;
+    position: absolute;
+    left: 30px;
+    top: 43px;
+    margin: 0;
+  }
+  /* Reaplicar la posición absoluta centrada para el logo */
+  div#logo {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    margin: 0;
+  }
+  /* Ubicar el menú a la derecha en horizontal */
+  div#menuPrincipal {
+    position: absolute;
+    right: 10px;
+    top: 40px;
+    width: auto;
+  }
+  div#menuPrincipal > ul {
+    flex-direction: row;
+    align-items: center;
+  }
+  div#menuPrincipal > ul li {
+    padding: 10px 10px;
+    margin: 0 5px;
+  }
 }

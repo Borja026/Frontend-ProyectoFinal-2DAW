@@ -1,4 +1,3 @@
-/* Estilos base para pantallas grandes */
 div#navbar {
   background-color: #112a16;
   max-width: 1920px;
@@ -11,10 +10,22 @@ div#navbar {
   align-items: center;
   justify-content: space-between;
   padding: 0 30px;
-}
 
-div#navbar div:nth-child(1) {
-  font-size: 30px;
+  & div:nth-child(1) {
+    font-size: 30px;
+  }
+
+  & div:nth-child(2) {
+    & img {
+      width: 130px;
+      margin: 0 auto;
+    }
+
+    & a,
+    &img {
+      display: block;
+    }
+  }
 }
 
 div#logo {
@@ -25,108 +36,145 @@ div#logo {
   transform: translateX(-50%);
 }
 
-div#navbar div:nth-child(2) a,
-div#navbar div:nth-child(2) img {
-  display: block;
-}
-
-div#navbar div:nth-child(2) img {
-  width: 130px;
-}
-
 /* Menú principal */
 div#menuPrincipal {
   position: absolute;
   right: 20px;
   top: 40px;
+
+  & > ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    & > li {
+      padding: 10px 15px;
+      margin: 0 10px;
+
+      & a {
+        text-decoration: none;
+        color: var(--blanco-roto);
+      }
+    }
+  }
 }
 
-div#menuPrincipal > ul {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-div#menuPrincipal > ul li {
-  padding: 10px 15px;
-  margin: 0 10px;
-}
-
-div#menuPrincipal > ul li a {
-  text-decoration: none;
-  color: var(--blanco-roto);
-}
-
-/* Tablets en vertical (max-width: 1024px) */
+/* Tablets (max-width: 1024px) */
 @media (max-width: 1024px) {
-  /* Disposición vertical */
   div#navbar {
     flex-direction: column;
     align-items: center;
     height: auto;
     padding: 15px 20px;
+
+    & div:nth-child(1) {
+      font-size: 35px;
+      position: static;
+      margin-bottom: 20px;
+    }
   }
-  div#navbar div:nth-child(1) {
-    font-size: 35px;
-    position: static;
-    margin-bottom: 20px;
-  }
-  /* Logo en flujo natural */
+
   div#logo {
     position: static;
     transform: none;
     margin-bottom: 10px;
   }
+
   /* Menú vertical */
   div#menuPrincipal {
     position: static;
     width: 100%;
     margin-top: 10px;
-  }
-  div#menuPrincipal > ul {
-    flex-direction: row;
-    align-items: center;
-    width: max-content;
-    margin: 0 auto;
-  }
-  div#menuPrincipal > ul li {
-    padding: 10px;
-    margin: 5px 5px;
+
+    & > ul {
+      flex-direction: row;
+      align-items: center;
+      width: max-content;
+      margin: 0 auto;
+
+      & li {
+        padding: 10px;
+        margin: 5px 5px;
+      }
+    }
   }
 }
 
-/* Móviles en vertical (max-width: 1024px) */
+/* Móviles en horizontal (max-width: 768px) */
 @media (max-width: 768px) {
-  /* Disposición vertical */
   div#navbar {
     flex-direction: column;
     align-items: center;
     height: auto;
     padding: 15px 20px;
+
+    & div:nth-child(1) {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
   }
-  div#navbar div:nth-child(1) {
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
-  /* Logo en flujo natural */
+
   div#logo {
     transform: none;
     margin-bottom: 10px;
   }
+
   /* Menú vertical */
   div#menuPrincipal {
     width: 100%;
     margin-top: 10px;
+
+    & > ul {
+      flex-direction: row;
+      display: flex;
+      align-items: center;
+      width: max-content;
+      margin: 0 auto;
+
+      & li {
+        padding: 10px;
+        margin: 5px 0;
+      }
+    }
   }
-  div#menuPrincipal > ul {
-    flex-direction: row;
+}
+
+/* Móviles en vertical (max-width: 460px) */
+@media (max-width: 460px) {
+  div#navbar {
+    flex-direction: column;
     align-items: center;
-    width: max-content;
-    margin: 0 auto;
+    height: auto;
+    padding: 15px 20px;
+
+    & div:nth-child(1) {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
   }
-  div#menuPrincipal > ul li {
-    padding: 10px;
-    margin: 5px 0;
+
+  div#logo {
+    transform: none;
+    margin-bottom: 10px;
+  }
+
+  /* Menú vertical */
+  div#menuPrincipal {
+    width: 100%;
+    margin-top: 10px;
+
+    & > ul {
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+      width: max-content;
+      margin: 0 auto;
+
+      & li {
+        padding: 10px;
+        margin: 5px 0;
+      }
+    }
   }
 }

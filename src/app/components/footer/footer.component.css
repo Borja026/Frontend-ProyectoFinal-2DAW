@@ -1,8 +1,8 @@
 /* Estilos base para el footer */
 #containerFooter {
-  background-color: #112a16;
+  background-color: var(--verde-oscuro);
   padding: 20px 60px 10px;
-  color: #ffead4;
+  color: var(--blanco-roto);
 }
 
 #containerFooter h2 {
@@ -24,7 +24,7 @@
 
 /* Primer enlace: Consulta con nosotros */
 .enlaces > div:first-child {
-  background-color: #ffead4;
+  background-color: var(--blanco-roto);
 }
 
 .enlaces > div:first-child a {
@@ -32,7 +32,7 @@
   padding: 15px 30px;
   font-size: 20px;
   text-decoration: none;
-  color: #112a16;
+  color: var(--verde-oscuro);
   border-radius: 25px;
 }
 
@@ -42,7 +42,7 @@
   padding: 15px 30px;
   font-size: 20px;
   text-decoration: none;
-  color: #ffead4;
+  color: var(--blanco-roto);
   border-radius: 25px;
   padding-right: 70px;
   z-index: 1;
@@ -56,7 +56,7 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  border: 3px solid #ffead4;
+  border: 3px solid var(--blanco-roto);
   border-radius: 50%;
   transition: transform 0.3s ease;
 }
@@ -81,7 +81,7 @@
   padding: 10px;
   width: max-content;
   height: max-content;
-  margin: 0 40px;
+  margin: 0 30px;
 }
 
 .container-info h3 {
@@ -149,7 +149,7 @@
     left: -10px;
     width: 40px;
     height: 40px;
-    border: 3px solid #ffead4;
+    border: 3px solid var(--blanco-roto);
     border-radius: 50%;
     transition: transform 0.3s ease;
   }
@@ -176,7 +176,7 @@
   }
 
   #containerFooter h2 {
-    font-size: 35px;
+    font-size: 25px;
     margin-bottom: 30px;
   }
 
@@ -189,6 +189,14 @@
   .enlaces > div {
     width: auto;
     justify-content: center;
+  }
+  .enlaces > div:nth-child(1):hover {
+    border: 2px solid var(--blanco-roto);
+    background-color: var(--verde-oscuro);
+    transition: 0.5s ease;
+  }
+  .enlaces > div:nth-child(1):hover a {
+    color: var(--blanco-roto);
   }
 
   /* Para el enlace de ACCESO USUARIO */
@@ -207,7 +215,7 @@
     left: -5px;
     width: 40px;
     height: 40px;
-    border: 3px solid #ffead4;
+    border: 3px solid var(--blanco-roto);
     border-radius: 50%;
     transition: transform 0.3s ease;
   }
@@ -234,7 +242,7 @@
     width: 40px;
     height: 40px;
   }
-  
+
   #mapaGoogleMaps {
     width: 100%;
   }

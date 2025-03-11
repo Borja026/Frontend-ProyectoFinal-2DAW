@@ -1,0 +1,111 @@
+#contacto {
+  background-color: var(--blanco-roto);
+}
+
+/* Estructura del formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Contenedor principal del formulario */
+.form-container {
+  max-width: 600px;
+  margin: 0px auto;
+  padding: 30px 10px 50px;
+  text-align: center;
+  color: #112a16;
+
+  /* Título principal */
+  & h1 {
+    font-size: 28px;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  /* Texto introductorio */
+  & p {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #333;
+  }
+}
+
+/* Cada grupo de campo (label + input) */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+
+  /* Etiquetas de cada campo */
+  & label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  /* Inputs, selects y textareas con línea inferior */
+  & input,
+  & select,
+  & > div > textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #112a16;
+    background-color: transparent;
+    padding: 8px 0;
+    font-size: 16px;
+    color: #112a16;
+  }
+
+  /* Quita el borde de focus azul y usa la línea */
+  & input:focus,
+  & select:focus,
+  & textarea:focus {
+    outline: none;
+    border-bottom-color: var(--rosita); /* Cambia de color al enfocar */
+  }
+
+  &:nth-child(1) {
+    display: flex;
+
+    & > div {
+      width: 100%;
+
+      &:nth-child(1) {
+        margin-right: 2rem;
+      }
+
+      & > input {
+        width: 100%;
+      }
+    }
+  }
+
+  & > div > textarea {
+    border: 2px solid #112a16;
+    min-height: 50px;
+    max-height: 150px;
+    resize: vertical; /* Permite cambiar el tamaño vertical */
+  }
+}
+
+/* Botón de envío */
+.btn-submit {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: var(--blanco-roto);
+  color: #112a16;
+  border: 2px solid #112a16;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  align-self: center; /* Centra el botón */
+  transition: background-color 0.5s ease; /* Transición de 1 segundo en el color de fondo */
+
+  &:hover {
+    background-color: var(--verde-oscuro);
+    color: var(--blanco-roto);
+  }
+}

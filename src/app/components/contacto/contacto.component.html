@@ -1,1 +1,85 @@
-<p>contacto works!</p>
+<div id="contacto">
+    <div class="form-container">
+        <h1>¿NECESITAS MÁS DETALLES DE NUESTRAS CUOTAS<br> O LAS ACTIVIDADES DEL CLUB?</h1>
+        <p>Por favor, rellena este formulario y pronto nos pondremos en contacto.</p>
+
+        <form action="#" method="POST">
+
+            <div class="form-group">
+                <!-- Nombre completo -->
+                <div>
+                    <label for="nombre">Nombre completo*</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required />
+                </div>
+
+                <!-- Apellidos completos -->
+                <div>
+                    <label for="apellidos">Apellidos completos*</label>
+                    <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos completos" required />
+                </div>
+
+            </div>
+
+            <!-- Correo Electrónico -->
+            <div class="form-group">
+                <label for="correo">Correo Electrónico*</label>
+                <input type="email" id="correo" name="correo" placeholder="Tu correo electrónico" required />
+            </div>
+
+            <!-- Teléfono Móvil -->
+            <div class="form-group">
+                <label for="telefono">Teléfono móvil*</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="600 000 000" required />
+            </div>
+
+            <!-- País -->
+            <div class="form-group">
+                <label for="pais">País (España por defecto)</label>
+                <select id="pais" name="pais">
+                    <option value="ES">España (ES)</option>
+                    <option value="US">Estados Unidos (US)</option>
+                    <option value="UK">Reino Unido (UK)</option>
+                    <option value="MX">México (MX)</option>
+                    <option value="AR">Argentina (AR)</option>
+                    <option value="CO">Colombia (CO)</option>
+                    <option value="CL">Chile (CL)</option>
+                    <!-- Añade más opciones si lo deseas -->
+                </select>
+            </div>
+
+            <!-- Área de interés -->
+            <div class="form-group">
+                <label for="area">Área de Interés*</label>
+                <select id="area" name="area" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="cuotas">Cuotas</option>
+                    <option value="actividades">Actividades del club</option>
+                    <option value="otros">Otros</option>
+                </select>
+            </div>
+
+            <!-- Mensaje o Comentarios -->
+            <div class="form-group">
+                <label for="mensaje">Mensaje o Comentarios</label>
+                <div>
+                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe aquí tu mensaje..."></textarea>
+                </div>
+            </div>
+
+            <!-- ¿Cómo nos has conocido? -->
+            <div class="form-group">
+                <label for="conocido">¿Cómo nos has conocido?</label>
+                <select id="conocido" name="conocido">
+                    <option value="">Selecciona</option>
+                    <option value="google">Buscando en Google</option>
+                    <option value="redes">Redes sociales</option>
+                    <option value="amigo">Un amigo me lo recomendó</option>
+                    <option value="otros">Otros</option>
+                </select>
+            </div>
+
+            <!-- Botón de envío -->
+            <button type="submit" class="btn-submit">Solicitar más información</button>
+        </form>
+    </div>
+</div>

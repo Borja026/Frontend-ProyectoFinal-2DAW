@@ -1,0 +1,126 @@
+div#tarifas-clases {
+  background-image: url("/imgs/Backgrounds_rates/background_rates_of_class.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding: 50px;
+
+  & > h2 {
+    width: max-content;
+    margin: 0 auto;
+    color: var(--dark-green);
+    font-weight: bold;
+    font-size: 30px;
+    text-transform: uppercase;
+  }
+
+  & div.container-cards {
+    max-width: 1500px;
+    margin: 50px auto 0;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 14px 11px;
+
+    & div.card {
+      width: 250px;
+      margin: 0 auto;
+
+      & div {
+        text-align: center;
+
+        &:nth-child(1) {
+          background-color: var(--dark-green);
+          color: var(--white);
+
+          & h3 {
+            padding: 20px 0;
+            margin: 0px;
+          }
+        }
+
+        &:nth-child(2) {
+          background-color: var(--white);
+          color: var(--dark-green);
+          padding: 10px 20px;
+
+          /* Precio */
+          & h4 {
+            color: var(--light-pink);
+            font-weight: bold;
+            font-size: 40px;
+            margin: 10px 0;
+          }
+
+          & p {
+            color: var(--dark-green);
+          }
+        }
+      }
+    }
+  }
+}
+
+div#tarifas-equipo {
+  background-image: url("/imgs/Backgrounds_rates/background_rates_of_team.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding: 50px;
+
+  & > h2 {
+    width: max-content;
+    margin: 0 auto;
+    color: var(--dark-green);
+    font-weight: bold;
+    font-size: 30px;
+    text-transform: uppercase;
+  }
+
+  & div.container-cards {
+    max-width: 1300px;
+    margin: 50px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 14px 11px;
+
+    & div.card {
+      border: 1px solid black;
+      width: 250px;
+      margin: 0 auto;
+
+      & div {
+        text-align: center;
+
+        &:nth-child(1) {
+          background-color: var(--dark-green);
+          color: var(--white);
+
+          & h3 {
+            padding: 20px 0;
+            margin: 0px;
+          }
+        }
+
+        &:nth-child(2) {
+          background-color: var(--white);
+          color: var(--dark-green);
+          padding: 10px 20px;
+
+          /* Precio */
+          & h4 {
+            color: var(--light-green);
+            font-weight: bold;
+            font-size: 40px;
+            margin: 10px 0;
+          }
+
+          & p {
+            color: var(--dark-green);
+          }
+        }
+      }
+    }
+  }
+}

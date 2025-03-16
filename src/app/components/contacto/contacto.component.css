@@ -1,5 +1,5 @@
 #contacto {
-  background-color: var(--blanco-roto);
+  background-color: var(--off-white);
 }
 
 /* Estructura del formulario */
@@ -63,7 +63,7 @@ form {
   & select:focus,
   & textarea:focus {
     outline: none;
-    border-bottom-color: var(--rosita); /* Cambia de color al enfocar */
+    border-bottom-color: var(--light-pink); /* Cambia de color al enfocar */
   }
 
   &:nth-child(1) {
@@ -94,7 +94,7 @@ form {
 .btn-submit {
   margin-top: 20px;
   padding: 12px 24px;
-  background-color: var(--blanco-roto);
+  background-color: var(--off-white);
   color: #112a16;
   border: 2px solid #112a16;
   border-radius: 25px;
@@ -105,7 +105,7 @@ form {
   transition: background-color 0.5s ease; /* Transición de 1 segundo en el color de fondo */
 
   &:hover {
-    background-color: var(--verde-oscuro);
-    color: var(--blanco-roto);
+    background-color: var(--dark-green);
+    color: var(--off-white);
   }
 }

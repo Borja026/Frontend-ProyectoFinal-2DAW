@@ -1,10 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --verde-oscuro: #112A16;
-  --verde-claro: #61A174;
-  --rosita: #F6988F;
-  --blanco-roto: #FFEAD4;
-  --blanco: #FFF5E9;
+  --dark-green: #112A16;
+  --light-green: #61A174;
+  --light-pink: #F6988F;
+  --off-white: #FFEAD4; /* Blanco roto (Blanquecino) */
+  --white: #FFF5E9;
+  --black: #000000;
 }
 
 * {

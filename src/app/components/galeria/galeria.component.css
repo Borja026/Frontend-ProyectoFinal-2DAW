@@ -10,6 +10,7 @@ div#galeria {
     justify-content: center;
     margin-top: 230px;
 
+    /* Menú principal */
     & > ul {
       width: 400px;
       padding: 10px;
@@ -60,6 +61,7 @@ div#galeria {
               color: var(--white);
               text-decoration: none;
               padding: 3px;
+              width: 100%;
             }
           }
         }

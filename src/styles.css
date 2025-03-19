@@ -6,8 +6,11 @@
   --off-white: #FFEAD4; /* Blanco roto (Blanquecino) */
   --white: #FFF5E9;
   --black: #000000;
+  --dark-grey: #222222;
 }
 
 * {
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0px;
+  padding: 0px;
 }

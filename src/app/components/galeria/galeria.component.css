@@ -1,0 +1,107 @@
+div#galeria {
+  border: 2px solid black;
+  background-color: var(--white);
+  display: grid;
+  grid-template-columns: 45% 50%;
+
+  & #menu_lateral {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 230px;
+
+    & > ul {
+      width: 400px;
+      padding: 10px;
+      list-style: none;
+
+      & > li {
+        background-color: var(--dark-green);
+        color: var(--white);
+        border: 1px solid var(--white);
+        padding: 10px 5px 10px 15px;
+        position: relative;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+
+        &:hover > ul {
+          max-height: 100px; /* Ajusta este valor según la altura total del contenido*/
+          opacity: 1;
+        }
+
+        /* Submenú con animación */
+        & > ul {
+          list-style: none;
+          padding: 5px 0 5px 10px;
+          margin: 0;
+          max-height: 0;
+          opacity: 0;
+          overflow: hidden;
+          transition: max-height 1s ease, opacity 1s ease;
+
+          & > li {
+            margin: 5px 0;
+            border: 1px solid var(--white);
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: var(--light-green);
+            }
+
+            & img {
+              display: inline-block;
+              vertical-align: middle;
+              margin: 5px 15px 5px 10px;
+            }
+
+            & a {
+              display: inline-block;
+              vertical-align: middle;
+              color: var(--white);
+              text-decoration: none;
+              padding: 3px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  & .images_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    > div {
+      border: 1px solid black;
+      background-color: white;
+      margin: 20px;
+      width: 270px;
+      height: 200px;
+
+      & > div {
+        background-color: rgba(255, 255, 255, 0);
+        position: absolute;
+        width: 270px;
+        height: 200px;
+        transition: background-color 1s;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        & a {
+          display: block;
+          /* background-color: coral; */
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      & img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

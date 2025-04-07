@@ -1,0 +1,12 @@
+.calendar-wrapper {
+  max-width: 320px;
+  margin: 0 auto;
+  /* Puedes agregar más estilos para personalizar el contenedor */
+}
+
+.selected-date {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+}

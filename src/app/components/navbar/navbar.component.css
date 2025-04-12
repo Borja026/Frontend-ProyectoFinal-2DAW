@@ -32,7 +32,8 @@ div#logo {
   width: max-content;
   position: absolute;
   left: 50%;
-  top: 0;
+  top: 35px;
+  bottom: 35px;
   transform: translateX(-50%);
 }
 

@@ -24,47 +24,6 @@ div#galeria {
         position: relative;
         transition: background-color 0.3s ease;
         cursor: pointer;
-
-        &:hover > ul {
-          max-height: 100px; /* Ajusta este valor según la altura total del contenido*/
-          opacity: 1;
-        }
-
-        /* Submenú con animación */
-        & > ul {
-          list-style: none;
-          padding: 5px 0 5px 10px;
-          margin: 0;
-          max-height: 0;
-          opacity: 0;
-          overflow: hidden;
-          transition: max-height 1s ease, opacity 1s ease;
-
-          & > li {
-            margin: 5px 0;
-            border: 1px solid var(--white);
-            transition: background-color 0.3s ease;
-
-            &:hover {
-              background-color: var(--light-green);
-            }
-
-            & img {
-              display: inline-block;
-              vertical-align: middle;
-              margin: 5px 15px 5px 10px;
-            }
-
-            & a {
-              display: inline-block;
-              vertical-align: middle;
-              color: var(--white);
-              text-decoration: none;
-              padding: 3px;
-              width: 100%;
-            }
-          }
-        }
       }
     }
   }

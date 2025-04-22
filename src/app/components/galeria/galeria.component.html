@@ -1,89 +1,17 @@
 <div id="galeria">
     <div id="menu_lateral">
         <ul>
-            <li>Imagenes del club
-                <ul>
-                    <li>
-                        <a href="#">
-                            <img src="imgs/icons/camera.png" alt="Camera"> Images
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="imgs/icons/clap_board.png" alt="Clap Board"> Videos</a>
-                    </li>
-                </ul>
-            </li>
-            <li>Torneo mixto
-                <ul>
-                    <li>
-                        <a href="#">
-                            <img src="imgs/icons/camera.png" alt="Camera"> Images
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="imgs/icons/clap_board.png" alt="Clap Board"> Videos</a>
-                    </li>
-                </ul>
-            </li>
-            <li>Torneo Bronce
-                <ul>
-                    <li>
-                        <a href="#">
-                            <img src="imgs/icons/camera.png" alt="Camera"> Images
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="imgs/icons/clap_board.png" alt="Clap Board"> Videos</a>
-                    </li>
-                </ul>
-            </li>
+            <li *ngFor="let categoria of categorias"
+                (click)="mostrarIdCatagoria(categoria.id, categoria.nombreCarpeta)">{{categoria.categoria}}</li>
         </ul>
     </div>
 
     <div class="images_container">
-        <div>
-            <div><a target="_blank" href="imgs/gallery/Torneo_mixto/mixto_1.jpg"></a></div>
-            <img src="imgs/gallery/Torneo_mixto/mixto_1.jpg">
-        </div>
-        <div>
-            <div><a target="_blank" href="imgs/gallery/Torneo_mixto/mixto_2.jpg"></a></div>
-            <img src="imgs/gallery/Torneo_mixto/mixto_2.jpg">
-        </div>
-        <div>
-            <div><a target="_blank" href="imgs/gallery/Torneo_mixto/mixto_3.jpg"></a></div>
-            <img src="imgs/gallery/Torneo_mixto/mixto_3.jpg">
-        </div>
-        <div>
-            <div><a target="_blank" href="imgs/gallery/Torneo_mixto/mixto_4.jpg"></a></div>
-            <img src="imgs/gallery/Torneo_mixto/mixto_4.jpg">
-        </div>
-        <div>
-            <div><a target="_blank" href="imgs/gallery/Torneo_mixto/mixto_5.jpg"></a></div>
-            <img src="imgs/gallery/Torneo_mixto/mixto_5.jpg">
-        </div>
-        <div>
-            <div><a target="_blank" href="imgs/gallery/Torneo_mixto/mixto_6.jpg"></a></div>
-            <img src="imgs/gallery/Torneo_mixto/mixto_6.jpg">
-        </div>
-        <div>
-            <div><a target="_blank" href="imgs/gallery/Torneo_mixto/mixto_7.jpg"></a></div>
-            <img src="imgs/gallery/Torneo_mixto/mixto_7.jpg">
-        </div>
-        <div>
-            <div><a target="_blank" href="imgs/gallery/Torneo_mixto/mixto_8.jpg"></a></div>
-            <img src="imgs/gallery/Torneo_mixto/mixto_8.jpg">
-        </div>
-        <div>
-            <div><a target="_blank" href="imgs/gallery/Torneo_mixto/mixto_9.jpg"></a></div>
-            <img src="imgs/gallery/Torneo_mixto/mixto_9.jpg">
-        </div>
-        <div>
-            <div><a target="_blank" href="imgs/gallery/Renovacion_de_la_imagen_del_club/image6.jpg"></a></div>
-            <img src="imgs/gallery/Renovacion_de_la_imagen_del_club/image6.jpg">
-        </div>
-        <div>
-            <div><a target="_blank" href="imgs/gallery/Renovacion_de_la_imagen_del_club/image5.jpg"></a></div>
-            <img src="imgs/gallery/Renovacion_de_la_imagen_del_club/image5.jpg">
+        <div *ngFor="let image of galeriaFiltrada(categoriaSeleccionada)">
+            <div>
+                <div><a target="_blank" [href]="'imgs/gallery/' + nombreCarpeta + '/' + + image.nombre"></a></div>
+                <img [src]="'imgs/gallery/' + nombreCarpeta + '/' + image.nombre">
+            </div>
         </div>
     </div>
 </div>

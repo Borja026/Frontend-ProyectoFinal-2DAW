@@ -1,0 +1,95 @@
+<div class="login">
+    <div *ngIf="alertMessage" class="alert">{{ alertMessage }}</div>
+
+
+    <div class="switch">
+        <button (click)="mostrarRegistro = false" [class.active]="!mostrarRegistro">Iniciar Sesión</button>
+        <button (click)="mostrarRegistro = true" [class.active]="mostrarRegistro">Registrarse</button>
+    </div>
+
+    <!-- Formulario Login -->
+    <form *ngIf="!mostrarRegistro" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <h2>Iniciar Sesión</h2>
+        <label>
+            Correo electrónico
+            <input formControlName="correo" type="email" placeholder="tucorreo@ejemplo.com" />
+        </label>
+        <label>
+            Contraseña
+            <input formControlName="password" type="password" placeholder="••••••••" />
+        </label>
+
+        <button type="submit" [disabled]="loginForm.invalid">
+            <i class="login-icon">🎾</i>
+            Entrar
+        </button>
+
+    </form>
+
+
+
+
+    <!-- Formulario Registro -->
+    <form *ngIf="mostrarRegistro" [formGroup]="registroForm" (ngSubmit)="onRegistro()">
+        <h2>Registrarse</h2>
+        <label>
+            Correo electrónico
+            <input formControlName="correo" type="email" placeholder="tucorreo@ejemplo.com" />
+        </label>
+        <label>
+            Nombre
+            <input formControlName="nombre" type="text" placeholder="Nombre" />
+        </label>
+        <label>
+            Apellidos
+            <input formControlName="apellidos" type="text" placeholder="Apellidos" />
+        </label>
+        <label>
+            Fecha de nacimiento
+            <input formControlName="fechaNacimiento" type="date" />
+        </label>
+        <label>
+            Teléfono
+            <input formControlName="telefono" type="tel" placeholder="600123456" />
+        </label>
+        <label>
+            Username
+            <input formControlName="username" type="text" placeholder="usuario123" />
+        </label>
+        <label>
+            Contraseña
+            <input formControlName="password" type="password" placeholder="••••••••" />
+        </label>
+        <label>
+            Nivel
+            <select formControlName="nivel">
+                <option value="">Selecciona nivel</option>
+                <option *ngFor="let n of niveles" [value]="n">{{ n }}</option>
+            </select>
+        </label>
+        <label>
+            Posición
+            <select formControlName="posicion">
+                <option value="">Selecciona posición</option>
+                <option *ngFor="let p of posiciones" [value]="p">{{ p }}</option>
+            </select>
+        </label>
+
+        <button type="submit" [disabled]="registroForm.invalid">
+            <i class="login-icon">🎾</i>
+            Registrar
+        </button>
+
+    </form>
+
+
+
+
+    <!-- Mostrar arrays (solo para depuración) -->
+    <div class="debug">
+        <h3>Datos Login:</h3>
+        <pre>{{ loginData | json }}</pre>
+        <h3>Datos Registro:</h3>
+        <pre>{{ registroData | json }}</pre>
+    </div>
+</div>

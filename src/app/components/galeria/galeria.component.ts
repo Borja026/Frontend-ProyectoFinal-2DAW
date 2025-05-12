@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GaleriaService, Galeria } from '../../services/galeria.service';
-import { CategoriasService, Categorias } from '../../services/categorias.service';
+import { Galeria, GaleriaService } from '../../services/galeria.service';
+import { Categorias, CategoriasService } from '../../services/categorias.service';
 
 @Component({
   selector: 'app-galeria',
@@ -12,11 +12,15 @@ export class GaleriaComponent implements OnInit {
   //* Variables
   fotos: Galeria[] = [];
   categorias: Categorias[] = [];
+
   categoriaSeleccionada: number = 2;
   nombreCarpeta: string = 'Torneo_Americano_de_Abril';
 
   constructor(private galeriaService: GaleriaService, private categoriasService: CategoriasService) { }
 
+
+
+  //? Datos de la API
 
   ngOnInit(): void {
     this.galeriaService.getGaleria().subscribe({
@@ -40,14 +44,16 @@ export class GaleriaComponent implements OnInit {
     });
   }
 
+
+
+
+
+
   galeriaFiltrada(idCategoria: number) {
     return this.fotos.filter(image => image.idCategoria === idCategoria);
   }
 
-
-
-
-
+  
   mostrarIdCatagoria(id: number, nombre: string){
     console.log('ID de la categoría: ' + id);
     console.log('Nombre de la categoría: ' + nombre);

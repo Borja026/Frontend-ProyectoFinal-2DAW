@@ -1,0 +1,154 @@
+.login {
+  width: 380px;
+  margin: 50px auto;
+  padding: 30px;
+  background: var(--off-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+  color: var(--dark-grey);
+  position: relative;
+}
+
+.login .switch {
+  display: flex;
+  margin-bottom: 25px;
+  background: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.login .switch button {
+  flex: 1;
+  padding: 12px 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s;
+  position: relative;
+}
+
+.login .switch button.active {
+  background: var(--light-green);
+  color: var(--white);
+}
+
+.login .switch button:not(.active):hover {
+  background: var(--light-green);
+  color: var(--white);
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--dark-green);
+  font-size: 24px;
+  position: relative;
+}
+
+.login h2::after {
+  content: url("https://img.icons8.com/emoji/20/000000/tennis-emoji.png");
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.login label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.login input,
+.login select {
+  margin-top: 6px;
+  padding: 10px;
+  border: 1px solid var(--light-green);
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--white);
+  transition: border-color 0.3s;
+}
+
+.login input:focus,
+.login select:focus {
+  outline: none;
+  border-color: var(--dark-green);
+}
+
+.login button[type="submit"] {
+  margin-top: 15px;
+  padding: 12px;
+  background: var(--dark-green);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login button[type="submit"] i {
+  margin-right: 8px;
+}
+
+.login button[type="submit"]:disabled {
+  background: var(--light-pink);
+  cursor: not-allowed;
+}
+
+.login .debug {
+  margin-top: 20px;
+  background: var(--white);
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  max-height: 180px;
+  overflow: auto;
+  border: 1px solid var(--light-green);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.alert {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--light-pink);
+  color: var(--white);
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  font-weight: bold;
+  animation: fadeout 1s ease-out 9s forwards;
+  z-index: 10;
+}
+
+@keyframes fadeout {
+  to { opacity: 0; }
+}

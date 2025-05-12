@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 100%; /* Para ocupar toda la ventana, puedes ajustar este valor */
+  height: 100%;
 }
 
 /* Estilos del mensaje de error */

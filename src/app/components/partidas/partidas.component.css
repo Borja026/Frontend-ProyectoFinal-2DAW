@@ -1,8 +1,5 @@
 #partidas {
-  /* background-color: var(--white); */
-
   & > div:nth-child(1) {
-    /* background-color: aqua; */
     width: max-content;
     height: 400px;
     display: flex;
@@ -35,7 +32,6 @@
   }
 
   & div#pistas {
-    /* background-color: yellow; */
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     width: 80%;
@@ -48,7 +44,6 @@
       margin: 10px;
       width: 183px;
       height: 288px;
-      /* height: 245px; */
       position: relative;
       margin: 15px auto;
 
@@ -156,11 +151,6 @@
               background-color: var(--light-green);
               color: var(--dark-green);
               border: 0px solid black;
-
-              /* &:hover {
-                  background-color: var(--dark-green);
-                  color: var(--white);
-                } */
             }
           }
         }

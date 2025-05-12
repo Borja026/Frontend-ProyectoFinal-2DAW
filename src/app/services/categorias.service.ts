@@ -14,10 +14,11 @@ export interface Categorias {
   providedIn: 'root'
 })
 export class CategoriasService {
-  private apiUrl = 'https://borja.com.es/ProyectoDosDAW/api_backend/public/categorias'; // Cambia esto según tu URL real
+  private apiUrl = 'https://borja.com.es/ProyectoDosDAW/api_backend/public/categorias';
 
   constructor(private http: HttpClient) { }
 
+  
   getCategorias(): Observable<Categorias[]> {
     return this.http.get<any[]>(this.apiUrl).pipe(
       map(data => data.map(item => ({

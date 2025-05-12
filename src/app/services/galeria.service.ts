@@ -13,14 +13,11 @@ export interface Galeria {
   providedIn: 'root'
 })
 export class GaleriaService {
-  private apiUrl = 'https://borja.com.es/ProyectoDosDAW/api_backend/public/galeria'; // Cambia esto según tu URL real
+  private apiUrl = 'https://borja.com.es/ProyectoDosDAW/api_backend/public/galeria';
 
   constructor(private http: HttpClient) {}
 
-  // getGaleria(): Observable<Galeria[]> {
-  //   return this.http.get<Galeria[]>(this.apiUrl);
-  // }
-
+  
   getGaleria(): Observable<Galeria[]> {
     return this.http.get<any[]>(this.apiUrl).pipe(
       map(data => data.map(item => ({

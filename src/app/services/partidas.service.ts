@@ -14,10 +14,11 @@ export interface Partidas {
   providedIn: 'root'
 })
 export class PartidasService {
-  private apiUrl = 'https://borja.com.es/ProyectoDosDAW/api_backend/public/pistasClientes'; // Cambia esto según tu URL real
+  private apiUrl = 'https://borja.com.es/ProyectoDosDAW/api_backend/public/pistasClientes';
 
   constructor(private http: HttpClient) { }
 
+  
   getPartidas(): Observable<Partidas[]> {
     return this.http.get<any[]>(this.apiUrl).pipe(
       map(data => data.map(item => ({

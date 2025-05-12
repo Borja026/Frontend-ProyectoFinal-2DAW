@@ -8,10 +8,7 @@
 
     <div class="images_container">
         <div *ngFor="let image of galeriaFiltrada(categoriaSeleccionada)">
-            <div>
-                <div><a target="_blank" [href]="'imgs/gallery/' + nombreCarpeta + '/' + + image.nombre"></a></div>
-                <img [src]="'imgs/gallery/' + nombreCarpeta + '/' + image.nombre">
-            </div>
+            <img [src]="'/imgs/gallery/' + nombreCarpeta + '/' + image.nombre">
         </div>
     </div>
 </div>

@@ -1,19 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  subMenuVisible: boolean = false;
+  constructor(private renderer: Renderer2) { }
 
   toggleSubMenu(event: MouseEvent) {
-    this.subMenuVisible = !this.subMenuVisible;
+    const clickedElement = event.currentTarget as HTMLElement;
+    const clickedSubMenu = clickedElement.querySelector('ul.sublist') as HTMLElement;
 
-    let element = event.currentTarget as HTMLElement;
-    let subMenu = element.getElementsByTagName('ul')[0];
-    console.log(subMenu);
-    subMenu.style.display = this.subMenuVisible ? 'block' : 'none';
+    const isVisible = clickedSubMenu.style.display === 'block';
+
+    const allSubMenus = document.querySelectorAll<HTMLElement>('ul.sublist');
+    allSubMenus.forEach(submenu => {
+      this.renderer.setStyle(submenu, 'display', 'none');
+    });
+
+    if (!isVisible) {
+      this.renderer.setStyle(clickedSubMenu, 'display', 'block');
+    }
   }
 }

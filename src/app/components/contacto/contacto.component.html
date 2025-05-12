@@ -3,53 +3,47 @@
         <h1>¿NECESITAS MÁS DETALLES DE NUESTRAS CUOTAS<br> O LAS ACTIVIDADES DEL CLUB?</h1>
         <p>Por favor, rellena este formulario y pronto nos pondremos en contacto.</p>
 
-        <form action="#" method="POST">
+        <!-- FORMULARIO con binding y validación -->
+        <form #contactForm="ngForm" (ngSubmit)="enviarFormulario(contactForm)" novalidate>
 
             <div class="form-group">
-                <!-- Nombre completo -->
                 <div>
                     <label for="nombre">Nombre completo*</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required />
+                    <input type="text" id="nombre" name="nombre" [(ngModel)]="formData.nombre" required />
                 </div>
 
-                <!-- Apellidos completos -->
                 <div>
                     <label for="apellidos">Apellidos completos*</label>
-                    <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos completos" required />
+                    <input type="text" id="apellidos" name="apellidos" [(ngModel)]="formData.apellidos" required />
                 </div>
-
             </div>
 
-            <!-- Correo Electrónico -->
             <div class="form-group">
                 <label for="correo">Correo Electrónico*</label>
-                <input type="email" id="correo" name="correo" placeholder="Tu correo electrónico" required />
+                <input type="email" id="correo" name="correo" [(ngModel)]="formData.correo" required />
             </div>
 
-            <!-- Teléfono Móvil -->
             <div class="form-group">
                 <label for="telefono">Teléfono móvil*</label>
-                <input type="tel" id="telefono" name="telefono" placeholder="600 000 000" required />
+                <input type="tel" id="telefono" name="telefono" [(ngModel)]="formData.telefono" required />
             </div>
 
-            <!-- País -->
             <div class="form-group">
                 <label for="pais">País (España por defecto)</label>
-                <select id="pais" name="pais">
-                    <option value="ES">España (ES)</option>
-                    <option value="US">Estados Unidos (US)</option>
-                    <option value="UK">Reino Unido (UK)</option>
-                    <option value="MX">México (MX)</option>
-                    <option value="AR">Argentina (AR)</option>
-                    <option value="CO">Colombia (CO)</option>
-                    <option value="CL">Chile (CL)</option>
+                <select id="pais" name="pais" [(ngModel)]="formData.pais">
+                    <option value="España">España</option>
+                    <option value="Estados Unidos">Estados Unidos</option>
+                    <option value="Reino Unido">Reino Unido</option>
+                    <option value="México">México</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Chile">Chile</option>
                 </select>
             </div>
 
-            <!-- Área de interés -->
             <div class="form-group">
                 <label for="area">Área de Interés*</label>
-                <select id="area" name="area" required>
+                <select id="area" name="area" [(ngModel)]="formData.area" required>
                     <option value="">Selecciona una opción</option>
                     <option value="cuotas">Cuotas</option>
                     <option value="actividades">Actividades del club</option>
@@ -57,18 +51,14 @@
                 </select>
             </div>
 
-            <!-- Mensaje o Comentarios -->
             <div class="form-group">
                 <label for="mensaje">Mensaje o Comentarios</label>
-                <div>
-                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe aquí tu mensaje..."></textarea>
-                </div>
+                <textarea id="mensaje" name="mensaje" rows="4" [(ngModel)]="formData.mensaje"></textarea>
             </div>
 
-            <!-- ¿Cómo nos has conocido? -->
             <div class="form-group">
                 <label for="conocido">¿Cómo nos has conocido?</label>
-                <select id="conocido" name="conocido">
+                <select id="conocido" name="conocido" [(ngModel)]="formData.conocido">
                     <option value="">Selecciona</option>
                     <option value="google">Buscando en Google</option>
                     <option value="redes">Redes sociales</option>
@@ -77,7 +67,6 @@
                 </select>
             </div>
 
-            <!-- Botón de envío -->
             <button type="submit" class="btn-submit">Solicitar más información</button>
         </form>
     </div>

@@ -48,7 +48,7 @@ form {
   /* Inputs, selects y textareas con línea inferior */
   & input,
   & select,
-  & > div > textarea {
+  & > textarea {
     width: 100%;
     border: none;
     border-bottom: 2px solid #112a16;
@@ -82,10 +82,11 @@ form {
     }
   }
 
-  & > div > textarea {
-    border: 2px solid #112a16;
-    min-height: 50px;
-    max-height: 150px;
+  & > textarea {
+    border: 1px solid #112a16;
+    border-bottom: 2px solid #112a16;
+    width: 100%;
+    height: 110px;
     resize: vertical; /* Permite cambiar el tamaño vertical */
   }
 }

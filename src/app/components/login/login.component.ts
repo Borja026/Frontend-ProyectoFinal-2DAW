@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Clientes, ClientesService } from '../../services/clientes.service';
+import { Empleados, EmpleadosService } from '../../services/empleados.service';
 import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
 
@@ -30,7 +31,7 @@ interface RegistroData {
 
 export class LoginComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private clientesService: ClientesService, private router: Router) {
+  constructor(private fb: FormBuilder, private clientesService: ClientesService, private empleadosService: EmpleadosService, private router: Router) {
     this.loginForm = this.fb.group({
       correo: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -50,23 +51,36 @@ export class LoginComponent implements OnInit {
   }
 
 
-  
+
   //? Datos de la API
 
   //* Variables
   datosClientes: Clientes[] = [];
+  datosEmpleados: Empleados[] = [];
+
 
   ngOnInit(): void {
     this.clientesService.getClientes().subscribe({
       next: (data) => {
-        console.log('Datos de los Clientes recibidos:', data);
+        console.log('Clientes:', data);
         this.datosClientes = data;
       },
       error: (err) => {
-        console.error('Error al obtener los datos de los Clientes', err);
+        console.error('Error al obtener los clientes', err);
+      }
+    });
+
+    this.empleadosService.getEmpleados().subscribe({
+      next: (data) => {
+        console.log('Empleados:', data);
+        this.datosEmpleados = data;
+      },
+      error: (err) => {
+        console.error('Error al obtener los empleados', err);
       }
     });
   }
+
 
 
 
@@ -101,27 +115,48 @@ export class LoginComponent implements OnInit {
     setTimeout(() => this.alertMessage = null, duration);
   }
 
-  // Cuando se envía el formulario de inicio de sesión
+
   onLogin() {
     if (this.loginForm.valid) {
       const creds = this.loginForm.value;
+      console.log('Contraseña: ' + creds.password);
       const hashedPassword = CryptoJS.SHA256(creds.password).toString();
-  
-      const cliente = this.datosClientes.find(c => 
+      console.log('Contraseña hasheada: ' + hashedPassword);
+
+      // Verificar si es cliente
+      const cliente = this.datosClientes.find(c =>
         c.correo === creds.correo && c.password === hashedPassword
       );
 
-      
       if (cliente) {
-        console.log('Inicio de sesión exitoso');
+        console.log('Inicio de sesión como Cliente');
+        localStorage.setItem('usuarioTipo', 'cliente');
+        localStorage.setItem('usuarioCorreo', cliente.correo);
         this.loginForm.reset();
-        this.router.navigate(['/partidas']);
-      } else {
-        this.showAlert('Credenciales incorrectos. Por favor, inténtalo de nuevo.');
+        this.router.navigate(['/tarifas']);
+        return;
       }
+
+      // Verificar si es empleado
+      const empleado = this.datosEmpleados.find(e =>
+        e.correo === creds.correo && e.password === hashedPassword
+      );
+
+      if (empleado) {
+        console.log('Inicio de sesión como Empleado');
+        localStorage.setItem('usuarioTipo', 'empleado');
+        localStorage.setItem('usuarioCorreo', empleado.correo);
+        window.location.href = 'https://borja.com.es/ProyectoDosDAW/api_backend/public/admin/clientes';
+        return;
+      }
+
+      // Si no se encuentra en ninguna lista
+      this.showAlert('Credenciales incorrectos. Por favor, inténtalo de nuevo.');
     }
   }
-  
+
+
+
 
   // Cuando se envía el formulario de registro
   onRegistro() {

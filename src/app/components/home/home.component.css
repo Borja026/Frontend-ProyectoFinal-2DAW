@@ -150,7 +150,7 @@
 
   /* info prices */
   & div.price {
-    background-image: url("/imgs/backgrounds_rates/background_rates_of_class.png");
+    background-image: url("/imgs/Backgrounds_rates/background_rates_of_class.png");
     height: 400px;
     display: grid;
     grid-template-rows: max-content max-content;

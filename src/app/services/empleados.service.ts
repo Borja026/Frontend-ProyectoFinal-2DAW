@@ -9,7 +9,7 @@ export interface Empleados {
   nombre: string;
   apellidos: string;
   foto: string;
-  fecha: string;
+  fecha: Date;
   telefono: number;
   correo: string;
   password: string;

@@ -17,7 +17,7 @@
       <h3>607 367 494</h3>
     </div>
     <div id="leyenda">
-      <img src="/imgs/pistas/Leyenda_Pistas.png" alt="leyenda de las pistas" />
+      <img src="https://borja.com.es/ProyectoDosDAW/imgs/pistas/Leyenda_Pistas.png" alt="leyenda de las pistas" />
     </div>
   </div>
 
@@ -26,25 +26,25 @@
     <ng-container *ngFor="let pista of pistas; let i = index">
       <div>
         <ng-container [ngSwitch]="pista.apuntados">
-          <img *ngSwitchCase="0" src="/imgs/pistas/pista_verde.png" alt="Pista {{ pista.idPista }}"
+          <img *ngSwitchCase="0" src="https://borja.com.es/ProyectoDosDAW/imgs/pistas/pista_verde.png" alt="Pista {{ pista.idPista }}"
             [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
             [attr.data-personas-apuntadas]="pista.apuntados" (click)="onImageClick($event, i)" />
 
-          <img *ngSwitchCase="1" src="/imgs/pistas/pista_naranja.png" alt="Pista {{ pista.idPista }}"
+          <img *ngSwitchCase="1" src="https://borja.com.es/ProyectoDosDAW/imgs/pistas/pista_naranja.png" alt="Pista {{ pista.idPista }}"
             [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
             [attr.data-personas-apuntadas]="pista.apuntados" (click)="onImageClick($event, i)" />
-          <img *ngSwitchCase="2" src="/imgs/pistas/pista_naranja.png" alt="Pista {{ pista.idPista }}"
+          <img *ngSwitchCase="2" src="https://borja.com.es/ProyectoDosDAW/imgs/pistas/pista_naranja.png" alt="Pista {{ pista.idPista }}"
             [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
             [attr.data-personas-apuntadas]="pista.apuntados" (click)="onImageClick($event, i)" />
-          <img *ngSwitchCase="3" src="/imgs/pistas/pista_naranja.png" alt="Pista {{ pista.idPista }}"
-            [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
-            [attr.data-personas-apuntadas]="pista.apuntados" (click)="onImageClick($event, i)" />
-
-          <img *ngSwitchCase="4" src="/imgs/pistas/pista_roja.png" alt="Pista {{ pista.idPista }}"
+          <img *ngSwitchCase="3" src="https://borja.com.es/ProyectoDosDAW/imgs/pistas/pista_naranja.png" alt="Pista {{ pista.idPista }}"
             [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
             [attr.data-personas-apuntadas]="pista.apuntados" (click)="onImageClick($event, i)" />
 
-          <img *ngSwitchCase="5" src="/imgs/pistas/pista_azul.png" alt="Pista {{ pista.idPista }}"
+          <img *ngSwitchCase="4" src="https://borja.com.es/ProyectoDosDAW/imgs/pistas/pista_roja.png" alt="Pista {{ pista.idPista }}"
+            [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
+            [attr.data-personas-apuntadas]="pista.apuntados" (click)="onImageClick($event, i)" />
+
+          <img *ngSwitchCase="5" src="https://borja.com.es/ProyectoDosDAW/imgs/pistas/pista_azul.png" alt="Pista {{ pista.idPista }}"
             [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
             [attr.data-personas-apuntadas]="pista.apuntados" (click)="onImageClick($event, i)" />
         </ng-container>

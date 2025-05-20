@@ -16,6 +16,8 @@ import { CalendarioComponent } from './components/calendario/calendario.componen
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AreaJugadorComponent } from './components/area-jugador/area-jugador.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     GaleriaComponent,
     ContactoComponent,
     CalendarioComponent,
-    LoginComponent
+    LoginComponent,
+    AreaJugadorComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

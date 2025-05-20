@@ -1,0 +1,42 @@
+<div class="perfil-container" *ngIf="cliente">
+  <h2>Mi Perfil</h2>
+
+  <div class="foto" *ngIf="cliente.foto == null || cliente.foto == ''">
+    <img src="https://borja.com.es/ProyectoDosDAW/api_backend/public/clientes/default_user.png"
+      alt="Foto del cliente" />
+  </div>
+  <div class="foto" *ngIf='cliente.foto !== null'>
+    <img
+      [src]="cliente.foto ? 'https://borja.com.es/ProyectoDosDAW/api_backend/public/imgs/clientes/' + cliente.foto : 'https://borja.com.es/ProyectoDosDAW/api_backend/public/clientes/default_user.png'"
+      alt="Foto del cliente" />
+  </div>
+
+
+
+  <form *ngIf="editMode; else vista">
+    <label>Foto de perfil:
+      <input type="file" (change)="onFileSelected($event)" />
+    </label>
+    <label>Nombre: <input [(ngModel)]="cliente.nombre" name="nombre" /></label>
+    <label>Apellidos: <input [(ngModel)]="cliente.apellidos" name="apellidos" /></label>
+    <label>Fecha de nacimiento: <input type="date" [(ngModel)]="cliente.fecha" name="fecha" /></label>
+    <label>Teléfono: <input [(ngModel)]="cliente.telefono" name="telefono" /></label>
+    <label>Username: <input [(ngModel)]="cliente.username" name="username" /></label>
+    <label>Contraseña: <input type="password" [(ngModel)]="cliente.password" name="password" /></label>
+
+    <div class="botones">
+      <button type="button" (click)="guardarCambios()">Guardar</button>
+      <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+    </div>
+  </form>
+
+  <ng-template #vista>
+    <p><strong>Nombre:</strong> {{ cliente.nombre }}</p>
+    <p><strong>Apellidos:</strong> {{ cliente.apellidos }}</p>
+    <p><strong>Fecha de nacimiento:</strong> {{ cliente.fecha }}</p>
+    <p><strong>Teléfono:</strong> {{ cliente.telefono }}</p>
+    <p><strong>Username:</strong> {{ cliente.username }}</p>
+    <p><strong>Contraseña:</strong> ••••••••••••</p>
+    <button (click)="activarEdicion()">Editar</button>
+  </ng-template>
+</div>

@@ -1,0 +1,196 @@
+.perfil-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--dark-grey);
+}
+
+.perfil-container h2 {
+  text-align: center;
+  color: var(--dark-green);
+  margin-bottom: 1.5rem;
+}
+
+.foto {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.foto img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--light-green);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+form label,
+.ng-template p {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+form input,
+select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid var(--light-green);
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+  background-color: var(--off-white);
+}
+
+form input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--dark-green);
+  background-color: var(--white);
+}
+
+.botones {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.botones button,
+.perfil-container button {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.botones button:first-child {
+  background-color: var(--light-green);
+  color: var(--dark-green);
+}
+
+.botones button:first-child:hover {
+  background-color: var(--dark-green);
+  color: var(--white);
+}
+
+.botones button:last-child {
+  background-color: var(--light-pink);
+  color: var(--dark-grey);
+}
+
+.botones button:last-child:hover {
+  background-color: #e76a60;
+  color: var(--white);
+}
+
+.perfil-container button {
+  background-color: var(--light-green);
+  color: var(--dark-green);
+  margin-top: 1rem;
+}
+
+.perfil-container button:hover {
+  background-color: var(--dark-green);
+  color: var(--white);
+}
+
+.ng-template p {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.ng-template strong {
+  color: var(--dark-green);
+}
+
+/* :root {
+  --dark-green: #112A16;
+  --light-green: #61A174;
+  --light-pink: #F6988F;
+  --off-white: #FFEAD4;
+  --white: #FFF5E9;
+  --black: #000000;
+  --dark-grey: #222222;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(17, 42, 22, 0.3);
+  color: var(--dark-grey);
+}
+
+.form-container h2 {
+  text-align: center;
+  color: var(--dark-green);
+  margin-bottom: 1.5rem;
+}
+
+.img-container {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.img-container img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--light-green);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+input, select {
+  padding: 0.5rem;
+  border: 1px solid var(--dark-grey);
+  border-radius: 5px;
+  background-color: var(--off-white);
+  color: var(--black);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background-color: var(--light-green);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: var(--dark-green);
+}
+
+.btn.update {
+  display: block;
+  margin: 2rem auto 0 auto;
+} */

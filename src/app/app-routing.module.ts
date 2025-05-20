@@ -7,6 +7,7 @@ import { GaleriaComponent } from './components/galeria/galeria.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
+import { AreaJugadorComponent } from './components/area-jugador/area-jugador.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'contacto',
     component: ContactoComponent
+  },
+  {
+    path: 'areaJugador',
+    component: AreaJugadorComponent
   },
   {
     path: 'login',

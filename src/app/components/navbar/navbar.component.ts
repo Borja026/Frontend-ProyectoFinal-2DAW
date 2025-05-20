@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  constructor() { }
 
+  sesionIniciada(): boolean {
+    const correoGuardado = localStorage.getItem('usuarioCorreo');
+    return correoGuardado !== null && correoGuardado !== '';
+  }
+
+  cerrarSesion() {
+    localStorage.removeItem('usuarioCorreo');
+    localStorage.removeItem('usuarioTipo');
+  }
 }

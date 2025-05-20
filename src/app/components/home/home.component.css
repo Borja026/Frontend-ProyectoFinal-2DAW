@@ -2,7 +2,7 @@
   & div#portada {
     background-color: coral;
     height: 630px;
-    background-image: url("/imgs/image_home/image0.png");
+    background-image: url("https://borja.com.es/ProyectoDosDAW/imgs/image_home/image0.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -150,7 +150,7 @@
 
   /* info prices */
   & div.price {
-    background-image: url("/imgs/Backgrounds_rates/background_rates_of_class.png");
+    background-image: url("https://borja.com.es/ProyectoDosDAW/imgs/Backgrounds_rates/background_rates_of_class.png");
     height: 400px;
     display: grid;
     grid-template-rows: max-content max-content;

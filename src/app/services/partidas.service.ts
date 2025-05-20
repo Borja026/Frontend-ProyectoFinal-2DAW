@@ -5,9 +5,10 @@ import { map } from 'rxjs/operators';
 
 
 export interface Partidas {
-  id: number;
-  categoria: string;
-  nombreCarpeta: string;
+  fechaHora: Date;
+  correoClientes: string;
+  idPistas: number;
+  numPersonas: number;
 }
 
 @Injectable({
@@ -22,9 +23,10 @@ export class PartidasService {
   getPartidas(): Observable<Partidas[]> {
     return this.http.get<any[]>(this.apiUrl).pipe(
       map(data => data.map(item => ({
-        id: Number(item.id), // Convertimos a número
-        categoria: item.categoria,
-        nombreCarpeta: item.nombreCarpeta
+        fechaHora: item.fechaHora,
+        correoClientes: item.correoClientes,
+        idPistas: Number(item.idPistas), // Convertimos a número
+        numPersonas: Number(item.numPersonas) // Convertimos a número
       })))
     );
   }

@@ -16,5 +16,7 @@ export class NavbarComponent {
   cerrarSesion() {
     localStorage.removeItem('usuarioCorreo');
     localStorage.removeItem('usuarioTipo');
+    localStorage.removeItem('usuarioNivel');
+    localStorage.removeItem('usuarioPosicion');
   }
 }

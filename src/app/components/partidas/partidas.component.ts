@@ -1,344 +1,226 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PartidasService, Partidas } from '../../services/partidas.service';
+
+interface PistaReservada {
+  idPista: number;
+  hora: string;
+  apuntados: number;
+  imagePista: string;
+  jugadores: any[];
+}
 
 @Component({
   selector: 'app-partidas',
   templateUrl: './partidas.component.html',
-  styleUrls: ['./partidas.component.css'],
+  styleUrls: ['./partidas.component.css']
 })
-export class PartidasComponent {
-  // Estado del componente
-  activePista: number | null = null; // Pista seleccionada
-  activeIndex: number | null = null; // Índice de la pista seleccionada en el array
-  showButtons: boolean = false; // Mostrar botones de acción
-  showFriendLevels: boolean = false; // Mostrar niveles de amigos
-  friendLevels: string[] = []; // Niveles de amigos
-  reservarPista: boolean = false; // Indica si la pista está reservada
-  numberFriends: number = 1; // Cantidad de amigos
-  imagePista: string = 'pista_verde.png';
+export class PartidasComponent implements OnInit {
+  activePista: number | null = null;
+  activeIndex: number | null = null;
+  showButtons: boolean = false;
+  showFriendLevels: boolean = false;
+  friendLevels: string[] = [];
+  reservarPista: boolean = false;
+  numberFriends: number = 1;
+  fechaSeleccionada: string = '';
 
-  // Datos de las pistas (id, id de la pista, hora, número de personas apuntadas)
-  pistas: {
-    id: number;
-    idPista: number;
-    hora: string;
-    apuntados: number;
-    imagePista: string;
-  }[] = [
-      {
-        id: 1,
-        idPista: 1,
-        hora: '9:00',
-        apuntados: 5,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 2,
-        idPista: 2,
-        hora: '9:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 3,
-        idPista: 3,
-        hora: '9:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 4,
-        idPista: 1,
-        hora: '10:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 5,
-        idPista: 2,
-        hora: '10:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 6,
-        idPista: 3,
-        hora: '10:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 7,
-        idPista: 1,
-        hora: '12:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 8,
-        idPista: 2,
-        hora: '12:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 9,
-        idPista: 3,
-        hora: '12:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 10,
-        idPista: 1,
-        hora: '13:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 11,
-        idPista: 2,
-        hora: '13:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 12,
-        idPista: 3,
-        hora: '13:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 13,
-        idPista: 1,
-        hora: '15:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 14,
-        idPista: 2,
-        hora: '15:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 15,
-        idPista: 3,
-        hora: '15:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 16,
-        idPista: 1,
-        hora: '16:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 17,
-        idPista: 2,
-        hora: '16:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 18,
-        idPista: 3,
-        hora: '16:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 19,
-        idPista: 1,
-        hora: '18:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 20,
-        idPista: 2,
-        hora: '18:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 21,
-        idPista: 3,
-        hora: '18:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 22,
-        idPista: 1,
-        hora: '19:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 23,
-        idPista: 2,
-        hora: '19:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 24,
-        idPista: 3,
-        hora: '19:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 25,
-        idPista: 1,
-        hora: '21:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 26,
-        idPista: 2,
-        hora: '21:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 27,
-        idPista: 3,
-        hora: '21:00',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 28,
-        idPista: 1,
-        hora: '22:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 29,
-        idPista: 2,
-        hora: '22:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-      {
-        id: 30,
-        idPista: 3,
-        hora: '22:30',
-        apuntados: 0,
-        imagePista: 'pista_verde.png',
-      },
-    ];
+  nivelCliente: number = 0;
+  posicionCliente: string = 'Indiferente';
+  correoCliente: string = '';
 
-  // Se ejecuta al hacer clic en una imagen de pista
+  pistas: PistaReservada[] = [];
+
+  constructor(private partidasService: PartidasService) { }
+
+  ngOnInit(): void {
+    const correo = localStorage.getItem('usuarioCorreo');
+    const nivel = localStorage.getItem('usuarioNivel');
+    const posicion = localStorage.getItem('usuarioPosicion');
+
+    if (correo) {
+      this.correoCliente = correo;
+      this.nivelCliente = nivel ? parseFloat(nivel) : 0;
+      this.posicionCliente = posicion || 'Indiferente';
+    }
+
+    const hoy = new Date();
+    hoy.setMinutes(hoy.getMinutes() - hoy.getTimezoneOffset()); // corregir zona horaria
+    const fechaLocal = hoy.toISOString().split('T')[0];
+
+    this.fechaSeleccionada = fechaLocal;
+    this.cargarReservasPorFecha(fechaLocal);
+  }
+
+  cargarReservasPorFecha(fecha: string) {
+    this.fechaSeleccionada = fecha;
+    this.partidasService.getReservasPorFecha(fecha).subscribe((reservas: Partidas[]) => {
+      const horas = ['09:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00', '22:30'];
+      const pistasIDs = [1, 2, 3];
+      const nuevasPistas: PistaReservada[] = [];
+      let pendingRequests = 0;
+
+      pistasIDs.forEach(id => {
+        horas.forEach(hora => {
+          const reservasDeEsta = reservas.filter(r => {
+            const rHora = new Date(r.fechaHora).toISOString().substring(11, 16);
+            return r.idPistas === id && rHora === hora;
+          });
+
+          const apuntados = reservasDeEsta.reduce((total, r) => total + r.numPersonas, 0);
+
+          const pistaData: PistaReservada = {
+            idPista: id,
+            hora: hora,
+            apuntados: apuntados,
+            imagePista: this.obtenerImagenPista(apuntados),
+            jugadores: []
+          };
+
+          pendingRequests++;
+          this.partidasService.getJugadoresPorPista(`${fecha} ${hora}:00`, id).subscribe(jugadores => {
+            pistaData.jugadores = jugadores;
+            nuevasPistas.push(pistaData);
+            pendingRequests--;
+
+            if (pendingRequests === 0) {
+              this.pistas = nuevasPistas.sort((a, b) => a.idPista - b.idPista || a.hora.localeCompare(b.hora));
+            }
+          });
+        });
+      });
+    });
+  }
+
+  obtenerImagenPista(apuntados: number): string {
+    if (apuntados === 0) return 'pista_verde.png';
+    if (apuntados >= 1 && apuntados <= 3) return 'pista_naranja.png';
+    if (apuntados === 4) return 'pista_roja.png';
+    return 'pista_azul.png';
+  }
+
   onImageClick(event: MouseEvent, index: number) {
-    let target = event.currentTarget as HTMLElement;
-    let idPista = target.getAttribute('data-id');
-    let hora = target.getAttribute('data-hora');
+    const target = event.currentTarget as HTMLElement;
+    const idPista = target.getAttribute('data-id');
+    const hora = target.getAttribute('data-hora');
 
     if (idPista && hora) {
       this.activeIndex = index;
       this.activePista = +idPista;
       this.showButtons = true;
       this.showFriendLevels = false;
-      console.log("index: " + index);
-      console.log(`Pista seleccionada: ${idPista}, Hora: ${hora}`);
-    } else {
-      console.error("Error: Atributos data-id o data-hora no encontrados.");
     }
   }
 
   apuntarseSolo() {
-    const pista = this.pistas[this.activeIndex!];
-    if (pista) {
-      if (pista.apuntados < 4) {
-        pista.apuntados += 1;
-        this.cambiarImagenPista();
-      }
+    if (!this.correoCliente) {
+      alert('Debes iniciar sesión para reservar una pista.');
+      return;
     }
+
+    const pista = this.pistas[this.activeIndex!];
+    const fechaHora = `${this.fechaSeleccionada} ${pista.hora}:00`;
+
+    if (pista.apuntados >= 4) {
+      alert('Esta pista ya está completa.');
+      return;
+    }
+
+    const reserva = {
+      fechaHora,
+      correoClientes: this.correoCliente,
+      idPistas: pista.idPista,
+      numPersonas: 1,
+      nivelPersonas: JSON.stringify([this.nivelCliente]),
+      mediaNivel: this.nivelCliente
+    };
+
+    this.partidasService.pagarYReservar(reserva).subscribe({
+      next: (res) => {
+        window.location.href = res.url;
+      },
+      error: err => alert(err.error?.message || 'Error al iniciar el pago.')
+    });
+
     this.showButtons = false;
   }
 
-  // Apuntarse con amigos (recibe la cantidad de amigos)
   apuntarseConAmigos(cantidad: number) {
-    if (cantidad > 0) {
-      // Para mostrar los selects de los niveles de los amigos
-      this.friendLevels = new Array(cantidad).fill('');
-      this.showFriendLevels = true;
-    }
+    this.friendLevels = new Array(cantidad).fill('');
+    this.showFriendLevels = true;
     this.numberFriends = cantidad;
-    console.log(`Apuntarse con ${cantidad} amigos`);
   }
 
-  // Guardar los niveles de los amigos
   guardarNivelesAmigos(index: number) {
-    console.log('index: ' + index);
-
-    if (this.numberFriends === 1) {
-      let select = document.getElementById('nivelAmigos1') as HTMLSelectElement;
-      this.friendLevels.push(select.value);
-      this.pistas[index].apuntados += 2;
-      console.log('SE ENTRA EN EL IF DE 1 AMIGO');
-    } else if (this.numberFriends === 2) {
-      let select = document.getElementById('nivelAmigos2') as HTMLSelectElement;
-      this.friendLevels.push(select.value);
-      this.pistas[index].apuntados += 3;
-      console.log('SE ENTRA EN EL IF DE 2 AMIGO');
+    if (!this.correoCliente) {
+      alert('Debes iniciar sesión para reservar una pista.');
+      return;
     }
-    console.log('Niveles de amigos:', this.friendLevels);
-    console.log('Apuntados:' + this.pistas[index].apuntados);
+
+    const pista = this.pistas[index];
+    const fechaHora = `${this.fechaSeleccionada} ${pista.hora}:00`;
+
+    const nivelesAmigos = this.friendLevels.map(n => parseFloat(n));
+    const todosLosNiveles = [this.nivelCliente, ...nivelesAmigos];
+
+    if (pista.apuntados + todosLosNiveles.length > 4) {
+      alert('No hay suficiente espacio para todos en esta pista.');
+      return;
+    }
+
+    const media = this.calcularMedia(todosLosNiveles);
+
+    const reserva = {
+      fechaHora,
+      correoClientes: this.correoCliente,
+      idPistas: pista.idPista,
+      numPersonas: todosLosNiveles.length,
+      nivelPersonas: JSON.stringify(todosLosNiveles),
+      mediaNivel: parseFloat(media.toFixed(2))
+    };
+
+    this.partidasService.pagarYReservar(reserva).subscribe({
+      next: (res) => {
+        window.location.href = res.url;
+      },
+      error: err => alert(err.error?.message || 'Error al iniciar el pago.')
+    });
+
     this.showFriendLevels = false;
     this.showButtons = false;
-    this.cambiarImagenPista();
   }
 
-  // Marcar la pista como reservada
-  reservarPistaFunction(index: number) {
-    console.log('index: ' + index);
-
-    this.reservarPista = true;
-    this.pistas[index].apuntados = 4;
-    console.log('Apuntados:' + this.pistas[index].apuntados);
-    console.log('Pista reservada');
-    this.showButtons = false;
-    this.cambiarImagenPista();
+  calcularMedia(numeros: number[]): number {
+    const suma = numeros.reduce((acc, n) => acc + n, 0);
+    return suma / numeros.length;
   }
 
-  // Cambiar la imagen de la pista (lógica para actualizar el aspecto visual)
-  cambiarImagenPista() {
-    // Aquí se actualizaría el DOM o la ruta de la imagen según el estado
-    const pista = this.pistas[this.activeIndex!];
-    if (pista) {
-      switch (pista.apuntados) {
-        case 0:
-          pista.imagePista = 'pista_verde.png';
-          break;
-        case 1:
-        case 2:
-        case 3:
-          pista.imagePista = 'pista_naranja.png';
-          break;
-        case 4:
-          pista.imagePista = 'pista_roja.png';
-          break;
-        case 5:
-          pista.imagePista = 'pista_azul.png';
-          break;
-      }
-    }
-    if (this.activeIndex !== null) {
-      console.log(this.pistas[this.activeIndex].apuntados + ' apuntados');
+  parseNiveles(nivelPersonas: string): number[] {
+    try {
+      return JSON.parse(nivelPersonas);
+    } catch {
+      return [];
     }
   }
 
-  // Crea un array del 1 hasta el número de amigos (para mostrar campos dinámicos en la plantilla)
-  getFriendArray(): number[] {
-    return Array.from({ length: this.numberFriends }, (_, i) => i + 1);
+  cancelarReserva(pista: PistaReservada) {
+    const fechaHora = `${this.fechaSeleccionada} ${pista.hora}:00`;
+
+    if (!confirm('¿Estás seguro de que quieres cancelar esta reserva?')) return;
+
+    this.partidasService.cancelarReserva({
+      fechaHora,
+      idPistas: pista.idPista
+    }).subscribe({
+      next: () => {
+        alert('Reserva cancelada correctamente.');
+        this.cargarReservasPorFecha(this.fechaSeleccionada);
+      },
+      error: err => alert(err.error?.message || 'Error al cancelar la reserva.')
+    });
   }
+
+  clienteTieneReserva(pista: any): boolean {
+    return pista.jugadores?.some((j: any) => j.correoClientes === this.correoCliente);
+  }
+
 }

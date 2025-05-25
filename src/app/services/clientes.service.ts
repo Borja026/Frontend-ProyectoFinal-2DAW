@@ -4,20 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
-// export interface Clientes {
-//   correo: string;
-//   nombre: string;
-//   apellidos: string;
-//   fecha: Date;
-//   foto: string;
-//   telefono: number;
-//   username: string;
-//   password: string;
-//   sexo: null;
-//   nivel: number;
-//   posicion: string;
-//   recibeClases: null;
-// }
 export interface Clientes {
   correo: string;
   nombre: string;
@@ -50,7 +36,6 @@ export class ClientesService {
         correo: item.correo,
         nombre: item.nombre,
         apellidos: item.apellidos,
-        // fecha: item.fecha,
         fecha: new Date(item.fecha), // Convertimos a Date
         foto: item.foto,
         telefono: Number(item.telefono), // Convertimos a número
@@ -73,6 +58,10 @@ export class ClientesService {
 
   registrarCliente(cliente: Clientes): Observable<any> {
     return this.http.post(this.apiUrl, cliente);
+  }
+
+  getClientePorCorreo(correo: string): Observable<Clientes> {
+    return this.http.get<Clientes>(`${this.apiUrl}/${encodeURIComponent(correo)}`);
   }
 
 }

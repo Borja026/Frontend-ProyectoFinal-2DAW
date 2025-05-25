@@ -18,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AreaJugadorComponent } from './components/area-jugador/area-jugador.component';
+import { StripeCheckoutComponent } from './components/stripe-checkout/stripe-checkout.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AreaJugadorComponent } from './components/area-jugador/area-jugador.com
     ContactoComponent,
     CalendarioComponent,
     LoginComponent,
-    AreaJugadorComponent
+    AreaJugadorComponent,
+    StripeCheckoutComponent
   ],
   imports: [
     BrowserModule,

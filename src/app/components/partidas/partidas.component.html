@@ -1,15 +1,7 @@
-<!-- Importar Flatpickr para el calendario -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js"></script>
-
-
-
-
 <div id="partidas">
-  <!-- Top zone -->
   <div>
     <div id="calendario">
-      <app-calendario></app-calendario>
+      <app-calendario (fechaSeleccionada)="cargarReservasPorFecha($event)"></app-calendario>
     </div>
     <div id="info">
       <h2>¿Necesitas ayuda?</h2>
@@ -21,84 +13,57 @@
     </div>
   </div>
 
-  <!-- Pistas zone -->
-  <div id="pistas">
-    <ng-container *ngFor="let pista of pistas; let i = index">
-      <div>
-        <ng-container [ngSwitch]="pista.apuntados">
-          <img *ngSwitchCase="0" src="https://borja.com.es/ProyectoDosDAW/imgs/pistas/pista_verde.png" alt="Pista {{ pista.idPista }}"
-            [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
-            [attr.data-personas-apuntadas]="pista.apuntados" (click)="onImageClick($event, i)" />
+  <div class="pistas-container">
+    <div class="pista" *ngFor="let pista of pistas; let i = index">
+      <img [src]="'https://borja.com.es/ProyectoDosDAW/imgs/pistas/' + pista.imagePista" alt="Pista {{ pista.idPista }}"
+        [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora" (click)="onImageClick($event, i)" />
 
-          <img *ngSwitchCase="1" src="https://borja.com.es/ProyectoDosDAW/imgs/pistas/pista_naranja.png" alt="Pista {{ pista.idPista }}"
-            [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
-            [attr.data-personas-apuntadas]="pista.apuntados" (click)="onImageClick($event, i)" />
-          <img *ngSwitchCase="2" src="https://borja.com.es/ProyectoDosDAW/imgs/pistas/pista_naranja.png" alt="Pista {{ pista.idPista }}"
-            [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
-            [attr.data-personas-apuntadas]="pista.apuntados" (click)="onImageClick($event, i)" />
-          <img *ngSwitchCase="3" src="https://borja.com.es/ProyectoDosDAW/imgs/pistas/pista_naranja.png" alt="Pista {{ pista.idPista }}"
-            [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
-            [attr.data-personas-apuntadas]="pista.apuntados" (click)="onImageClick($event, i)" />
-
-          <img *ngSwitchCase="4" src="https://borja.com.es/ProyectoDosDAW/imgs/pistas/pista_roja.png" alt="Pista {{ pista.idPista }}"
-            [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
-            [attr.data-personas-apuntadas]="pista.apuntados" (click)="onImageClick($event, i)" />
-
-          <img *ngSwitchCase="5" src="https://borja.com.es/ProyectoDosDAW/imgs/pistas/pista_azul.png" alt="Pista {{ pista.idPista }}"
-            [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
-            [attr.data-personas-apuntadas]="pista.apuntados" (click)="onImageClick($event, i)" />
-        </ng-container>
-
-        <div>{{ pista.hora }}</div>
-
-        <ng-container *ngIf="activeIndex === i">
-          <!-- Botones de apuntarse -->
-          <div *ngIf="pista.apuntados < 4" [style.display]="showButtons ? 'block' : 'none'">
-            <button (click)="apuntarseSolo()">Apuntarse solo</button>
-            <button *ngIf="pista.apuntados <= 2" (click)="apuntarseConAmigos(1)">
-              Apuntarse con <br />
-              1 amigos
-            </button>
-            <button *ngIf="pista.apuntados <= 1" (click)="apuntarseConAmigos(2)">
-              Apuntarse con <br />
-              2 amigos
-            </button>
-            <button *ngIf="pista.apuntados === 0" (click)="reservarPistaFunction(i)">Reservar la pista</button>
-            <button (click)="showButtons = false">Cancelar</button>
-          </div>
-
-          <!-- Niveles de los amigos -->
-          <div [style.display]="showFriendLevels ? 'flex' : 'none'">
-            <div class="nivelAmigos" *ngFor="let nivel of friendLevels; let i = index">
-              <div class="nivelDelAmigo">
-                <label for="nivelAmigos{{ i + 1 }}">Inv. {{ i + 1 }}</label>
-                <select id="nivelAmigos{{ i + 1 }}" name="nivelAmigos" [(ngModel)]="friendLevels[i]">
-                  <option value="1.25">1.25</option>
-                  <option value="1.50">1.50</option>
-                  <option value="1.75">1.75</option>
-                  <option value="2.00">2.00</option>
-                  <option value="2.25">2.25</option>
-                  <option value="2.50">2.50</option>
-                  <option value="2.75">2.75</option>
-                  <option value="3.00">3.00</option>
-                  <option value="3.25">3.25</option>
-                  <option value="3.50" selected>3.50</option>
-                  <option value="3.75">3.75</option>
-                  <option value="4.00">4.00</option>
-                  <option value="4.25">4.25</option>
-                  <option value="4.50">4.50</option>
-                  <option value="4.75">4.75</option>
-                  <option value="5.00">5.00</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <button (click)="showFriendLevels = false">Cancelar</button>
-              <button (click)="guardarNivelesAmigos(i)">Guardar</button>
-            </div>
-          </div>
-        </ng-container>
+      <div class="info">
+        <strong>Pista {{ pista.idPista }}</strong> - {{ pista.hora }}<br />
+        Apuntados: {{ pista.apuntados }} / 4
       </div>
-    </ng-container>
+
+      <div *ngIf="pista.jugadores?.length" class="jugadores">
+        <h4>Jugadores:</h4>
+        <ul>
+          <li *ngFor="let jugador of pista.jugadores">
+            {{ jugador.correoClientes }} - Posición: {{ jugador.posicion }} - Niveles:
+            {{ parseNiveles(jugador.nivelPersonas).join(', ') }} - Media: {{ jugador.mediaNivel }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- BOTONES DE ACCIÓN -->
+      <div *ngIf="activeIndex === i && showButtons && pista.apuntados < 4" class="acciones">
+        <button (click)="apuntarseSolo()">Apuntarse solo</button>
+
+        <ng-container *ngIf="pista.apuntados <= 2">
+          <button *ngIf="pista.apuntados <= 2" (click)="apuntarseConAmigos(1)">Apuntarse con 1 amigo</button>
+          <button *ngIf="pista.apuntados <= 1" (click)="apuntarseConAmigos(2)">Apuntarse con 2 amigos</button>
+          <button *ngIf="pista.apuntados === 0" (click)="apuntarseConAmigos(3)">Reservar la pista</button>
+        </ng-container>
+
+        <button (click)="showButtons = false">Cancelar</button>
+
+        <!-- Botón condicional corregido -->
+        <button *ngIf="clienteTieneReserva(pista)" (click)="cancelarReserva(pista)">
+          Cancelar mi reserva
+        </button>
+      </div>
+
+      <!-- FORMULARIO PARA NIVEL DE AMIGOS -->
+      <div *ngIf="showFriendLevels && activeIndex === i" class="niveles-amigos">
+        <div *ngFor="let nivel of friendLevels; let j = index">
+          <label>Invitado {{ j + 1 }}:</label>
+          <select [(ngModel)]="friendLevels[j]">
+            <option *ngFor="let val of [1.25,1.5,1.75,2,2.25,2.5,2.75,3,3.25,3.5,3.75,4,4.25,4.5,4.75,5]" [value]="val">
+              {{ val }}
+            </option>
+          </select>
+        </div>
+        <button (click)="guardarNivelesAmigos(i)">Guardar</button>
+        <button (click)="showFriendLevels = false">Cancelar</button>
+      </div>
+    </div>
   </div>
 </div>

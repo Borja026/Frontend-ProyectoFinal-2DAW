@@ -130,8 +130,12 @@ export class LoginComponent implements OnInit {
 
       if (cliente) {
         console.log('Inicio de sesión como Cliente');
+        console.log('Datos Cliente BBDD:', cliente);
+
         localStorage.setItem('usuarioTipo', 'cliente');
         localStorage.setItem('usuarioCorreo', cliente.correo);
+        localStorage.setItem('usuarioNivel', cliente.nivel.toString());
+        localStorage.setItem('usuarioPosicion', cliente.posicion);
         this.loginForm.reset();
         // this.router.navigate(['/tarifas']);
         this.router.navigate(['/areaJugador']);
@@ -157,57 +161,6 @@ export class LoginComponent implements OnInit {
   }
 
 
-
-
-  // Cuando se envía el formulario de registro
-  // onRegistro() {
-  //   if (this.registroForm.valid) {
-  //     const nuevo = this.registroForm.value;
-
-  //     const nuevoCliente: Clientes = {
-  //       correo: nuevo.correo,
-  //       nombre: nuevo.nombre,
-  //       apellidos: nuevo.apellidos,
-  //       fecha: nuevo.fechaNacimiento,
-  //       foto: 'default_user.png',
-  //       telefono: Number(nuevo.telefono.trim()),
-  //       username: nuevo.username,
-  //       password: CryptoJS.SHA256(nuevo.password).toString(),
-  //       sexo: null, // <- null o false, dependiendo si no lo pides en el formulario
-  //       nivel: Number(nuevo.nivel.replace(',', '.')),
-  //       posicion: nuevo.posicion,
-  //       recibeClases: null // <- lo mismo
-  //     };
-
-  //     console.log('Nuevo cliente:', nuevoCliente);
-
-  //     this.clientesService.registrarCliente(nuevoCliente).subscribe({
-  //       next: (res) => {
-  //         console.log('Respuesta backend:', res);
-
-  //         if (res.status === true) {
-  //           localStorage.setItem('usuarioTipo', 'cliente');
-  //           localStorage.setItem('usuarioCorreo', nuevoCliente.correo);
-  //           this.registroForm.reset();
-  //           this.router.navigate(['/areaJugador']);
-  //         } else {
-  //           this.showAlert('Registro fallido. Intenta más tarde.');
-  //         }
-  //       },
-  //       error: (err) => {
-  //         console.error('Error al registrar cliente:', err);
-
-  //         if (err.status === 400 && err.error?.errors) {
-  //           const errores = err.error.errors;
-  //           const mensajes = Object.values(errores).join(' ');
-  //           this.showAlert(mensajes);
-  //         } else {
-  //           this.showAlert('Error inesperado al registrar. Intenta más tarde.');
-  //         }
-  //       }
-  //     });
-  //   }
-  // }
   onRegistro() {
     if (this.registroForm.valid) {
       const nuevo = this.registroForm.value;

@@ -10,6 +10,10 @@ export interface Partidas {
   numPersonas: number;
   nivelPersonas: string;
   mediaNivel: number;
+  estadoPago: string;
+  cancelada: string;
+  pago_id: string | null;
+  fechaCancelacion: string | null;
 }
 
 @Injectable({
@@ -27,7 +31,11 @@ export class PartidasService {
           ...p,
           numPersonas: parseInt(p.numPersonas || '0', 10),
           idPistas: parseInt(p.idPistas || '0', 10),
-          mediaNivel: parseFloat(p.mediaNivel || '0')
+          mediaNivel: parseFloat(p.mediaNivel || '0'),
+          estadoPago: p.estadoPago || '',
+          cancelada: p.cancelada || '0',
+          pago_id: p.pago_id || null,
+          fechaCancelacion: p.fechaCancelacion || null
         }))
       )
     );
@@ -40,7 +48,11 @@ export class PartidasService {
           ...p,
           numPersonas: parseInt(p.numPersonas || '0', 10),
           idPistas: parseInt(p.idPistas || '0', 10),
-          mediaNivel: parseFloat(p.mediaNivel || '0')
+          mediaNivel: parseFloat(p.mediaNivel || '0'),
+          estadoPago: p.estadoPago || '',
+          cancelada: p.cancelada || '0',
+          pago_id: p.pago_id || null,
+          fechaCancelacion: p.fechaCancelacion || null
         }))
       )
     );

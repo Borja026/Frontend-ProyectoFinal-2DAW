@@ -27,8 +27,7 @@
         <h4>Jugadores:</h4>
         <ul>
           <li *ngFor="let jugador of pista.jugadores">
-            {{ jugador.correoClientes }} - Posición: {{ jugador.posicion }} - Niveles:
-            {{ parseNiveles(jugador.nivelPersonas).join(', ') }} - Media: {{ jugador.mediaNivel }}
+            {{ jugador.correoClientes }} - Niveles: {{ parseNiveles(jugador.nivelPersonas).join(', ') }} - Media: {{ jugador.mediaNivel }}
           </li>
         </ul>
       </div>

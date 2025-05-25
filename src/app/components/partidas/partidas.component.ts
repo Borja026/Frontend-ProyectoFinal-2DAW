@@ -44,7 +44,7 @@ export class PartidasComponent implements OnInit {
     }
 
     const hoy = new Date();
-    hoy.setMinutes(hoy.getMinutes() - hoy.getTimezoneOffset()); // corregir zona horaria
+    hoy.setMinutes(hoy.getMinutes() - hoy.getTimezoneOffset());
     const fechaLocal = hoy.toISOString().split('T')[0];
 
     this.fechaSeleccionada = fechaLocal;
@@ -54,6 +54,7 @@ export class PartidasComponent implements OnInit {
   cargarReservasPorFecha(fecha: string) {
     this.fechaSeleccionada = fecha;
     this.partidasService.getReservasPorFecha(fecha).subscribe((reservas: Partidas[]) => {
+      console.log('Todas las reservas recibidas:', reservas); // <-- Para depuración
       const horas = ['09:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00', '22:30'];
       const pistasIDs = [1, 2, 3];
       const nuevasPistas: PistaReservada[] = [];
@@ -62,11 +63,21 @@ export class PartidasComponent implements OnInit {
       pistasIDs.forEach(id => {
         horas.forEach(hora => {
           const reservasDeEsta = reservas.filter(r => {
-            const rHora = new Date(r.fechaHora).toISOString().substring(11, 16);
-            return r.idPistas === id && rHora === hora;
+            const fechaObj = new Date(r.fechaHora);
+            const h = fechaObj.getHours().toString().padStart(2, '0');
+            const m = fechaObj.getMinutes().toString().padStart(2, '0');
+            const rHora = `${h}:${m}`;
+            return (
+              r.idPistas === id &&
+              rHora === hora &&
+              r.cancelada !== '1' &&
+              r.estadoPago === 'pagado'
+            );
           });
 
-          const apuntados = reservasDeEsta.reduce((total, r) => total + r.numPersonas, 0);
+          console.log('Reservas para pista', id, 'a las', hora, reservasDeEsta);
+          const apuntados = reservasDeEsta.reduce((total, r) => total + Number(r.numPersonas || 0), 0);
+          console.log(`Apuntados en pista ${id} a las ${hora}: ${apuntados}`);
 
           const pistaData: PistaReservada = {
             idPista: id,
@@ -131,7 +142,11 @@ export class PartidasComponent implements OnInit {
       idPistas: pista.idPista,
       numPersonas: 1,
       nivelPersonas: JSON.stringify([this.nivelCliente]),
-      mediaNivel: this.nivelCliente
+      mediaNivel: this.nivelCliente,
+      estadoPago: 'pendiente',
+      cancelada: '0',
+      pago_id: null,
+      fechaCancelacion: null
     };
 
     this.partidasService.pagarYReservar(reserva).subscribe({
@@ -175,7 +190,11 @@ export class PartidasComponent implements OnInit {
       idPistas: pista.idPista,
       numPersonas: todosLosNiveles.length,
       nivelPersonas: JSON.stringify(todosLosNiveles),
-      mediaNivel: parseFloat(media.toFixed(2))
+      mediaNivel: parseFloat(media.toFixed(2)),
+      estadoPago: 'pendiente',
+      cancelada: '0',
+      pago_id: null,
+      fechaCancelacion: null
     };
 
     this.partidasService.pagarYReservar(reserva).subscribe({
@@ -222,5 +241,4 @@ export class PartidasComponent implements OnInit {
   clienteTieneReserva(pista: any): boolean {
     return pista.jugadores?.some((j: any) => j.correoClientes === this.correoCliente);
   }
-
 }

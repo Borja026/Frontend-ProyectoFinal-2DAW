@@ -32,13 +32,11 @@
 
 //   pistas: PistaReservada[] = [];
 
-//   // constructor(private partidasService: PartidasService ) { }
 //   constructor(
 //     private partidasService: PartidasService,
 //     private emailService: EmailService,
 //     private router: Router
 //   ) { }
-
 
 //   ngOnInit(): void {
 //     const correo = localStorage.getItem('usuarioCorreo');
@@ -62,7 +60,6 @@
 //   cargarReservasPorFecha(fecha: string) {
 //     this.fechaSeleccionada = fecha;
 //     this.partidasService.getReservasPorFecha(fecha).subscribe((reservas: Partidas[]) => {
-//       console.log('Todas las reservas recibidas:', reservas); // <-- Para depuración
 //       const horas = ['09:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00', '22:30'];
 //       const pistasIDs = [1, 2, 3];
 //       const nuevasPistas: PistaReservada[] = [];
@@ -83,9 +80,7 @@
 //             );
 //           });
 
-//           console.log('Reservas para pista', id, 'a las', hora, reservasDeEsta);
 //           const apuntados = reservasDeEsta.reduce((total, r) => total + Number(r.numPersonas || 0), 0);
-//           console.log(`Apuntados en pista ${id} a las ${hora}: ${apuntados}`);
 
 //           const pistaData: PistaReservada = {
 //             idPista: id,
@@ -97,7 +92,8 @@
 
 //           pendingRequests++;
 //           this.partidasService.getJugadoresPorPista(`${fecha} ${hora}:00`, id).subscribe(jugadores => {
-//             pistaData.jugadores = jugadores;
+//             // pistaData.jugadores = jugadores;
+//             pistaData.jugadores = jugadores.filter(j => j.cancelada !== '1'); // 👈 Filtrar los cancelados
 //             nuevasPistas.push(pistaData);
 //             pendingRequests--;
 
@@ -216,35 +212,6 @@
 //     this.showButtons = false;
 //   }
 
-//   calcularMedia(numeros: number[]): number {
-//     const suma = numeros.reduce((acc, n) => acc + n, 0);
-//     return suma / numeros.length;
-//   }
-
-//   parseNiveles(nivelPersonas: string): number[] {
-//     try {
-//       return JSON.parse(nivelPersonas);
-//     } catch {
-//       return [];
-//     }
-//   }
-
-//   // cancelarReserva(pista: PistaReservada) {
-//   //   const fechaHora = `${this.fechaSeleccionada} ${pista.hora}:00`;
-
-//   //   if (!confirm('¿Estás seguro de que quieres cancelar esta reserva?')) return;
-
-//   //   this.partidasService.cancelarReserva({
-//   //     fechaHora,
-//   //     idPistas: pista.idPista
-//   //   }).subscribe({
-//   //     next: () => {
-//   //       alert('Reserva cancelada correctamente.');
-//   //       this.cargarReservasPorFecha(this.fechaSeleccionada);
-//   //     },
-//   //     error: err => alert(err.error?.message || 'Error al cancelar la reserva.')
-//   //   });
-//   // }
 //   cancelarReserva(pista: PistaReservada) {
 //     const fechaHora = `${this.fechaSeleccionada} ${pista.hora}:00`;
 
@@ -259,7 +226,6 @@
 //         alert('Reserva cancelada correctamente.');
 //         this.emailService.enviarCorreoCancelacion(this.correoCliente, pista.idPista, fechaHora);
 
-//         // Redirigir a 'Partidas' después de 2 segundos
 //         setTimeout(() => {
 //           this.router.navigate(['/partidas']);
 //         }, 2000);
@@ -268,11 +234,25 @@
 //     });
 //   }
 
-
 //   clienteTieneReserva(pista: any): boolean {
 //     return pista.jugadores?.some((j: any) => j.correoClientes === this.correoCliente);
 //   }
+
+//   calcularMedia(numeros: number[]): number {
+//     const suma = numeros.reduce((acc, n) => acc + n, 0);
+//     return suma / numeros.length;
+//   }
+
+//   parseNiveles(nivelPersonas: string): number[] {
+//     try {
+//       return JSON.parse(nivelPersonas);
+//     } catch {
+//       return [];
+//     }
+//   }
 // }
+
+
 
 
 
@@ -298,16 +278,16 @@ interface PistaReservada {
 export class PartidasComponent implements OnInit {
   activePista: number | null = null;
   activeIndex: number | null = null;
-  showButtons: boolean = false;
-  showFriendLevels: boolean = false;
+  showButtons = false;
+  showFriendLevels = false;
   friendLevels: string[] = [];
-  reservarPista: boolean = false;
-  numberFriends: number = 1;
-  fechaSeleccionada: string = '';
+  reservarPista = false;
+  numberFriends = 1;
+  fechaSeleccionada = '';
 
-  nivelCliente: number = 0;
-  posicionCliente: string = 'Indiferente';
-  correoCliente: string = '';
+  nivelCliente = 0;
+  posicionCliente = 'Indiferente';
+  correoCliente = '';
 
   pistas: PistaReservada[] = [];
 
@@ -371,7 +351,7 @@ export class PartidasComponent implements OnInit {
 
           pendingRequests++;
           this.partidasService.getJugadoresPorPista(`${fecha} ${hora}:00`, id).subscribe(jugadores => {
-            pistaData.jugadores = jugadores;
+            pistaData.jugadores = jugadores.filter(j => j.cancelada !== '1');
             nuevasPistas.push(pistaData);
             pendingRequests--;
 
@@ -490,6 +470,28 @@ export class PartidasComponent implements OnInit {
     this.showButtons = false;
   }
 
+  // cancelarReserva(pista: PistaReservada) {
+  //   const fechaHora = `${this.fechaSeleccionada} ${pista.hora}:00`;
+
+  //   if (!confirm('¿Estás seguro de que quieres cancelar esta reserva?')) return;
+
+  //   this.partidasService.cancelarReserva({
+  //     fechaHora,
+  //     idPistas: pista.idPista,
+  //     correoClientes: this.correoCliente
+  //   }).subscribe({
+  //     next: () => {
+  //       this.emailService.enviarCorreoCancelacion(this.correoCliente, pista.idPista, fechaHora);
+  //       alert('Reserva cancelada correctamente.');
+  //       this.cargarReservasPorFecha(this.fechaSeleccionada); // recargar sin esperar reload
+  //     },
+  //     error: err => {
+  //       alert(err.error?.message || 'Error al cancelar la reserva.');
+  //       console.error('Error al cancelar:', err);
+  //     }
+  //   });
+  // }
+
   cancelarReserva(pista: PistaReservada) {
     const fechaHora = `${this.fechaSeleccionada} ${pista.hora}:00`;
 
@@ -501,16 +503,19 @@ export class PartidasComponent implements OnInit {
       correoClientes: this.correoCliente
     }).subscribe({
       next: () => {
-        alert('Reserva cancelada correctamente.');
         this.emailService.enviarCorreoCancelacion(this.correoCliente, pista.idPista, fechaHora);
 
-        setTimeout(() => {
-          this.router.navigate(['/partidas']);
-        }, 2000);
+        // Recargar la lista actualizada después de cancelar
+        this.cargarReservasPorFecha(this.fechaSeleccionada);
+        alert('Reserva cancelada correctamente.');
       },
-      error: err => alert(err.error?.message || 'Error al cancelar la reserva.')
+      error: err => {
+        console.error('Error al cancelar reserva:', err);
+        alert('No se pudo cancelar la reserva.');
+      }
     });
   }
+
 
   clienteTieneReserva(pista: any): boolean {
     return pista.jugadores?.some((j: any) => j.correoClientes === this.correoCliente);

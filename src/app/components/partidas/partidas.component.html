@@ -45,7 +45,7 @@
         <button (click)="showButtons = false">Cancelar</button>
 
         <!-- Botón condicional corregido -->
-        <button *ngIf="clienteTieneReserva(pista)" (click)="cancelarReserva(pista)">
+        <button *ngIf="clienteTieneReserva(pista)" (click)="cancelarReserva(pista)" style="background-color: rgba(255, 0, 0, 0.7); border: 1px solid red;">
           Cancelar mi reserva
         </button>
       </div>

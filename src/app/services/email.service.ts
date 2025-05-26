@@ -1,14 +1,3 @@
-// import { Injectable } from '@angular/core';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class EmailService {
-
-//   constructor() { }
-// }
-
-
 import { Injectable } from '@angular/core';
 import emailjs from '@emailjs/browser';
 
@@ -16,9 +5,13 @@ import emailjs from '@emailjs/browser';
   providedIn: 'root'
 })
 export class EmailService {
-  private serviceId = 'service_2bdkzfg';
-  private templateId = 'template_05qpt1z';
-  private publicKey = 'lQm0BDZYAnXZ-j5Uy';
+  private serviceIdCancelacion = 'service_2bdkzfg';
+  private templateIdCancelacion = 'template_05qpt1z';
+  private publicKeyCancelacion = 'lQm0BDZYAnXZ-j5Uy';
+  
+  private serviceIdConfirmacion = 'service_rqg1cbd';
+  private templateIdConfirmacion = 'template_tdb24cb';
+  private publicKeyConfirmacion = 'TWQizTGjcbOe7uKU_';
 
   constructor() { }
 
@@ -29,7 +22,7 @@ export class EmailService {
       fecha_hora: fechaHora
     };
 
-    emailjs.send(this.serviceId, this.templateId, templateParams, this.publicKey)
+    emailjs.send(this.serviceIdCancelacion, this.templateIdCancelacion, templateParams, this.publicKeyCancelacion)
       .then(() => {
         console.log('Correo de cancelación enviado');
       })
@@ -37,4 +30,20 @@ export class EmailService {
         console.error('Error al enviar el correo de cancelación:', error);
       });
   }
+
+
+  enviarCorreoConfirmacionReserva(correoCliente: string, fechaHora: string, pista: number, numPersonas: number, mediaNivel: number): void {
+    const templateParams = {
+      cliente_email: correoCliente,
+      fecha_hora: fechaHora,
+      pista: pista,
+      num_personas: numPersonas,
+      media_nivel: mediaNivel
+    };
+
+    emailjs.send(this.serviceIdConfirmacion, this.templateIdConfirmacion, templateParams, this.publicKeyConfirmacion)
+      .then(() => console.log('Correo de confirmación enviado'))
+      .catch(error => console.error('Error al enviar confirmación:', error));
+  }
+
 }

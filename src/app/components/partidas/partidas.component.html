@@ -20,14 +20,16 @@
 
       <div class="info">
         <strong>Pista {{ pista.idPista }}</strong> - {{ pista.hora }}<br />
-        Apuntados: {{ pista.apuntados }} / 4
+        <!-- Apuntados: {{ pista.apuntados }} / 4 -->
+        Apuntados: {{ pista.apuntados }} / {{ pista.apuntados > 4 ? 5 : 4 }}
       </div>
 
       <div *ngIf="pista.jugadores?.length" class="jugadores">
         <h4>Jugadores:</h4>
         <ul>
           <li *ngFor="let jugador of pista.jugadores">
-            {{ jugador.correoClientes }} - Niveles: {{ parseNiveles(jugador.nivelPersonas).join(', ') }} - Media: {{ jugador.mediaNivel }}
+            {{ jugador.correoClientes }} - Niveles: {{ parseNiveles(jugador.nivelPersonas).join(', ') }} - Media: {{
+            jugador.mediaNivel }}
           </li>
         </ul>
       </div>
@@ -45,7 +47,8 @@
         <button (click)="showButtons = false">Cancelar</button>
 
         <!-- Botón condicional corregido -->
-        <button *ngIf="clienteTieneReserva(pista)" (click)="cancelarReserva(pista)" style="background-color: rgba(255, 0, 0, 0.7); border: 1px solid red;">
+        <button *ngIf="clienteTieneReserva(pista)" (click)="cancelarReserva(pista)"
+          style="background-color: rgba(255, 0, 0, 0.7); border: 1px solid red;">
           Cancelar mi reserva
         </button>
       </div>

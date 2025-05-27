@@ -133,3 +133,19 @@
 .pista .niveles-amigos div {
   margin-bottom: 6px;
 }
+
+
+
+
+
+
+
+
+
+
+.pista .jugadores strong {
+  font-weight: bold;
+  display: block;
+  padding: 4px 0;
+  color: #0074D9;
+}

@@ -15,8 +15,13 @@
 
   <div class="pistas-container">
     <div class="pista" *ngFor="let pista of pistas; let i = index">
-      <img [src]="'https://borja.com.es/ProyectoDosDAW/imgs/pistas/' + pista.imagePista" alt="Pista {{ pista.idPista }}"
-        [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora" (click)="onImageClick($event, i)" />
+      <img 
+        [src]="'https://borja.com.es/ProyectoDosDAW/imgs/pistas/' + pista.imagePista"
+        alt="Pista {{ pista.idPista }}"
+        [class.disabled]="pista.esPasada"
+        [attr.data-id]="pista.idPista"
+        [attr.data-hora]="pista.hora"
+        (click)="onImageClick($event, i)" />
 
       <div class="info">
         <strong>Pista {{ pista.idPista }}</strong> - {{ pista.hora }}<br />
@@ -35,7 +40,7 @@
       </div>
 
       <!-- BOTONES DE ACCIÓN -->
-      <div *ngIf="activeIndex === i && showButtons && pista.apuntados < 4" class="acciones">
+      <div *ngIf="activeIndex === i && showButtons && pista.apuntados < 4 && !pista.esPasada" class="acciones">
         <button (click)="apuntarseSolo()">Apuntarse solo</button>
 
         <ng-container *ngIf="pista.apuntados <= 2">

@@ -134,18 +134,72 @@
   margin-bottom: 6px;
 }
 
-
-
-
-
-
-
-
-
-
 .pista .jugadores strong {
   font-weight: bold;
   display: block;
   padding: 4px 0;
-  color: #0074D9;
+  color: #0074d9;
+}
+
+img.disabled {
+  filter: grayscale(100%);
+  opacity: 0.7;
+}
+
+/* Responsive para tablet y móvil */
+@media (max-width: 768px) {
+  #partidas > div:first-child {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pistas-container {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+
+  .pista img {
+    height: 140px;
+  }
+
+  .pista .info {
+    font-size: 13px;
+  }
+
+  .pista .jugadores {
+    font-size: 12px;
+  }
+
+  .pista button {
+    font-size: 13px;
+    padding: 5px;
+  }
+
+  .pista .niveles-amigos label {
+    width: auto;
+    margin-bottom: 4px;
+  }
+
+  .pista .niveles-amigos select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .pistas-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .pista img {
+    height: 120px;
+  }
+
+  .pista .info,
+  .pista .jugadores {
+    font-size: 12px;
+  }
+
+  .pista button {
+    font-size: 12px;
+    padding: 4px;
+  }
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
@@ -16,7 +16,7 @@ import { CalendarioComponent } from './components/calendario/calendario.componen
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AreaJugadorComponent } from './components/area-jugador/area-jugador.component';
 import { StripeCheckoutComponent } from './components/stripe-checkout/stripe-checkout.component';
 
@@ -43,7 +43,11 @@ import { StripeCheckoutComponent } from './components/stripe-checkout/stripe-che
     ReactiveFormsModule,
     CommonModule
   ],
-  providers: [],
+  // providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es-ES' },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

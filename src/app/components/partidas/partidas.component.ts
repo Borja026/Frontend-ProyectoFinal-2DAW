@@ -9,6 +9,7 @@ interface PistaReservada {
   apuntados: number;
   imagePista: string;
   jugadores: any[];
+  esPasada: boolean;
 }
 
 @Component({
@@ -57,6 +58,44 @@ export class PartidasComponent implements OnInit {
     this.cargarReservasPorFecha(fechaLocal);
   }
 
+  // cargarReservasPorFecha(fecha: string) {
+  //   this.fechaSeleccionada = fecha;
+  //   const horas = ['09:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00', '22:30'];
+  //   const pistasIDs = [1, 2, 3];
+  //   const nuevasPistas: PistaReservada[] = [];
+  //   let pendingRequests = 0;
+
+  //   pistasIDs.forEach(id => {
+  //     horas.forEach(hora => {
+  //       pendingRequests++;
+  //       this.partidasService.getJugadoresPorPista(`${fecha} ${hora}:00`, id).subscribe(jugadores => {
+  //         const jugadoresActivos = jugadores.filter(j => j.cancelada !== '1');
+  //         const totalPersonas = jugadoresActivos.reduce((total, j) => total + Number(j.numPersonas || 0), 0);
+  //         const reservadoPorClub = jugadoresActivos.some(j => j.correoClientes === 'club@dreampadel.com');
+
+  //         const fechaHoraPista = new Date(`${fecha}T${hora}:00`);
+  //         fechaHoraPista.setMinutes(fechaHoraPista.getMinutes() - fechaHoraPista.getTimezoneOffset());
+  //         const esPasada = fechaHoraPista.getTime() < new Date().getTime();
+
+  //         const pistaData: PistaReservada = {
+  //           idPista: id,
+  //           hora: hora,
+  //           apuntados: totalPersonas,
+  //           esPasada: esPasada,
+  //           imagePista: this.obtenerImagenPista(totalPersonas, reservadoPorClub, esPasada),
+  //           jugadores: jugadoresActivos
+  //         };
+
+  //         nuevasPistas.push(pistaData);
+  //         pendingRequests--;
+
+  //         if (pendingRequests === 0) {
+  //           this.pistas = nuevasPistas.sort((a, b) => a.idPista - b.idPista || a.hora.localeCompare(b.hora));
+  //         }
+  //       });
+  //     });
+  //   });
+  // }
   cargarReservasPorFecha(fecha: string) {
     this.fechaSeleccionada = fecha;
     const horas = ['09:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00', '22:30'];
@@ -64,20 +103,24 @@ export class PartidasComponent implements OnInit {
     const nuevasPistas: PistaReservada[] = [];
     let pendingRequests = 0;
 
-    pistasIDs.forEach(id => {
-      horas.forEach(hora => {
+    horas.forEach(hora => {
+      pistasIDs.forEach(id => {
         pendingRequests++;
         this.partidasService.getJugadoresPorPista(`${fecha} ${hora}:00`, id).subscribe(jugadores => {
           const jugadoresActivos = jugadores.filter(j => j.cancelada !== '1');
-
           const totalPersonas = jugadoresActivos.reduce((total, j) => total + Number(j.numPersonas || 0), 0);
           const reservadoPorClub = jugadoresActivos.some(j => j.correoClientes === 'club@dreampadel.com');
+
+          const fechaHoraPista = new Date(`${fecha}T${hora}:00`);
+          fechaHoraPista.setMinutes(fechaHoraPista.getMinutes() - fechaHoraPista.getTimezoneOffset());
+          const esPasada = fechaHoraPista.getTime() < new Date().getTime();
 
           const pistaData: PistaReservada = {
             idPista: id,
             hora: hora,
             apuntados: totalPersonas,
-            imagePista: this.obtenerImagenPista(totalPersonas, reservadoPorClub),
+            esPasada: esPasada,
+            imagePista: this.obtenerImagenPista(totalPersonas, reservadoPorClub, esPasada),
             jugadores: jugadoresActivos
           };
 
@@ -85,17 +128,23 @@ export class PartidasComponent implements OnInit {
           pendingRequests--;
 
           if (pendingRequests === 0) {
-            this.pistas = nuevasPistas.sort((a, b) => a.idPista - b.idPista || a.hora.localeCompare(b.hora));
+            // Ordenamos por hora y opcionalmente por pista
+            this.pistas = nuevasPistas.sort((a, b) => {
+              const horaA = a.hora;
+              const horaB = b.hora;
+              if (horaA < horaB) return -1;
+              if (horaA > horaB) return 1;
+              return a.idPista - b.idPista;
+            });
           }
         });
-
-
-
       });
     });
   }
 
-  obtenerImagenPista(apuntados: number, reservadoPorClub: boolean): string {
+
+  obtenerImagenPista(apuntados: number, reservadoPorClub: boolean, esPasada: boolean): string {
+    if (esPasada) return 'pista_gris.png';
     if (reservadoPorClub || apuntados === 5) return 'pista_azul.png';
     if (apuntados === 0) return 'pista_verde.png';
     if (apuntados <= 3) return 'pista_naranja.png';
@@ -103,9 +152,10 @@ export class PartidasComponent implements OnInit {
     return 'pista_verde.png';
   }
 
-
-
   onImageClick(event: MouseEvent, index: number) {
+    const pista = this.pistas[index];
+    if (pista.esPasada) return;
+
     const target = event.currentTarget as HTMLElement;
     const idPista = target.getAttribute('data-id');
     const hora = target.getAttribute('data-hora');
@@ -127,10 +177,6 @@ export class PartidasComponent implements OnInit {
     const pista = this.pistas[this.activeIndex!];
     const fechaHora = `${this.fechaSeleccionada} ${pista.hora}:00`;
 
-    // if (pista.apuntados >= 4) {
-    //   alert('Esta pista ya está completa.');
-    //   return;
-    // }
     if (pista.apuntados >= 4 || pista.jugadores.some(j => j.correoClientes === 'club@dreampadel.com')) {
       alert('Esta pista ya está completa o reservada por el club.');
       return;
@@ -177,10 +223,6 @@ export class PartidasComponent implements OnInit {
     const nivelesAmigos = this.friendLevels.map(n => parseFloat(n));
     const todosLosNiveles = [this.nivelCliente, ...nivelesAmigos];
 
-    // if (pista.apuntados + todosLosNiveles.length > 4) {
-    //   alert('No hay suficiente espacio para todos en esta pista.');
-    //   return;
-    // }
     if (pista.apuntados + todosLosNiveles.length > 4 || pista.jugadores.some(j => j.correoClientes === 'club@dreampadel.com')) {
       alert('Esta pista ya está completa o reservada por el club.');
       return;
@@ -217,12 +259,9 @@ export class PartidasComponent implements OnInit {
     const fechaHoraReserva = new Date(fechaHoraStr);
     const ahora = new Date();
 
-    // Restamos los minutos de desfase horario para que la comparación sea precisa
     fechaHoraReserva.setMinutes(fechaHoraReserva.getMinutes() - fechaHoraReserva.getTimezoneOffset());
-
     const diferenciaEnHoras = (fechaHoraReserva.getTime() - ahora.getTime()) / (1000 * 60 * 60);
 
-    // Comprobamos si faltan menos de 10 horas
     if (diferenciaEnHoras < 10) {
       alert('No puedes cancelar la reserva. Faltan menos de 10 horas para que sea la hora de la reserva.');
       return;
@@ -246,7 +285,6 @@ export class PartidasComponent implements OnInit {
       }
     });
   }
-
 
   clienteTieneReserva(pista: any): boolean {
     return pista.jugadores?.some((j: any) => j.correoClientes === this.correoCliente);

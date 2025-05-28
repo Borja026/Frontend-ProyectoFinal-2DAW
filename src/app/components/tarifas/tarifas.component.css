@@ -1,125 +1,93 @@
-div#tarifas-clases {
-  background-image: url("https://borja.com.es/ProyectoDosDAW/imgs/Backgrounds_rates/background_rates_of_class.png");
+div#tarifas-clases,
+div#tarifas-equipo {
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100%;
-  padding: 50px;
+  background-size: cover;
+  padding: 60px 20px;
+  position: relative;
+}
 
-  & > h2 {
-    width: max-content;
-    margin: 0 auto;
-    color: var(--dark-green);
-    font-weight: bold;
-    font-size: 30px;
-    text-transform: uppercase;
-  }
-
-  & div.container-cards {
-    max-width: 1500px;
-    margin: 50px auto 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 14px 11px;
-
-    & div.card {
-      width: 250px;
-      margin: 0 auto;
-
-      & div {
-        text-align: center;
-
-        &:nth-child(1) {
-          background-color: var(--dark-green);
-          color: var(--white);
-
-          & h3 {
-            padding: 20px 0;
-            margin: 0px;
-          }
-        }
-
-        &:nth-child(2) {
-          background-color: var(--white);
-          color: var(--dark-green);
-          padding: 10px 20px;
-
-          /* Precio */
-          & h4 {
-            color: var(--light-pink);
-            font-weight: bold;
-            font-size: 40px;
-            margin: 10px 0;
-          }
-
-          & p {
-            color: var(--dark-green);
-          }
-        }
-      }
-    }
-  }
+div#tarifas-clases {
+  background-image: url("https://borja.com.es/ProyectoDosDAW/imgs/Backgrounds_rates/background_rates_of_class.png");
 }
 
 div#tarifas-equipo {
   background-image: url("https://borja.com.es/ProyectoDosDAW/imgs/Backgrounds_rates/background_rates_of_team.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  padding: 50px;
+}
 
-  & > h2 {
-    width: max-content;
-    margin: 0 auto;
-    color: var(--dark-green);
-    font-weight: bold;
-    font-size: 30px;
-    text-transform: uppercase;
-  }
+/* Títulos */
+div#tarifas-clases > h2,
+div#tarifas-equipo > h2 {
+  color: var(--dark-green);
+  font-size: 36px;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+}
 
-  & div.container-cards {
-    max-width: 1300px;
-    margin: 50px auto 0;
+/* Contenedor de tarjetas */
+.container-cards {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  justify-items: center;
+  gap: 30px;
+  padding: 0 10px;
+}
 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 14px 11px;
+/* Tarjeta */
+.card {
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--white);
+  min-width: 200px;
+  max-width: 390px;
+}
 
-    & div.card {
-      border: 1px solid black;
-      width: 250px;
-      margin: 0 auto;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
 
-      & div {
-        text-align: center;
+/* Parte superior (Título) */
+.card > div:nth-child(1) {
+  background-color: var(--dark-green);
+  color: var(--white);
+  text-align: center;
+  padding: 20px;
+}
 
-        &:nth-child(1) {
-          background-color: var(--dark-green);
-          color: var(--white);
+.card > div:nth-child(1) h3 {
+  margin: 0;
+  font-size: 22px;
+}
 
-          & h3 {
-            padding: 20px 0;
-            margin: 0px;
-          }
-        }
+/* Parte inferior (Contenido) */
+.card > div:nth-child(2) {
+  background-color: var(--white);
+  color: var(--dark-green);
+  text-align: center;
+  padding: 20px;
+}
 
-        &:nth-child(2) {
-          background-color: var(--white);
-          color: var(--dark-green);
-          padding: 10px 20px;
+.card > div:nth-child(2) h4 {
+  font-size: 36px;
+  margin: 10px 0;
+  color: var(--light-green);
+  font-weight: bold;
+}
 
-          /* Precio */
-          & h4 {
-            color: var(--light-green);
-            font-weight: bold;
-            font-size: 40px;
-            margin: 10px 0;
-          }
+#tarifas-clases .card > div:nth-child(2) h4 {
+  color: var(--light-pink);
+}
 
-          & p {
-            color: var(--dark-green);
-          }
-        }
-      }
-    }
-  }
+.card > div:nth-child(2) p {
+  color: var(--dark-green);
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
 }

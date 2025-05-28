@@ -20,6 +20,8 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 import { AreaJugadorComponent } from './components/area-jugador/area-jugador.component';
 import { StripeCheckoutComponent } from './components/stripe-checkout/stripe-checkout.component';
 
+import localeEs from '@angular/common/locales/es';
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -22,6 +22,8 @@ export class AreaJugadorComponent implements OnInit {
       this.clienteService.getClientes().subscribe(clientes => {
         const encontrado = clientes.find(c => c.correo === correoGuardado);
         if (encontrado) {
+          // encontrado.fecha = new Date(encontrado.fecha);
+          encontrado.fecha = encontrado.fecha;
           this.cliente = { ...encontrado } as Clientes;
           this.clienteOriginal = { ...encontrado } as Clientes;
         }
@@ -46,7 +48,7 @@ export class AreaJugadorComponent implements OnInit {
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
   }
-  
+
   guardarCambios(): void {
     if (this.cliente) {
       if (this.selectedFile) {
@@ -59,6 +61,8 @@ export class AreaJugadorComponent implements OnInit {
           .subscribe({
             next: (respuesta) => {
               this.cliente!.foto = respuesta.nuevaImagen;
+              // this.cliente!.fecha = new Date(this.cliente!.fecha); // Aseguramos que la fecha sea un objeto Date
+              this.cliente!.fecha = this.cliente!.fecha;
               this.guardarCliente();
             },
             error: (err) => {
@@ -71,7 +75,7 @@ export class AreaJugadorComponent implements OnInit {
       }
     }
   }
-  
+
 
 
   private guardarCliente(): void {
@@ -91,4 +95,12 @@ export class AreaJugadorComponent implements OnInit {
       });
     }
   }
+
+  formatearFechaInput(fecha: Date): string {
+    const year = fecha.getFullYear();
+    const month = (fecha.getMonth() + 1).toString().padStart(2, '0');
+    const day = fecha.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
 }

@@ -1,67 +1,138 @@
 div#galeria {
-  border: 2px solid black;
   background-color: var(--white);
   display: grid;
-  grid-template-columns: 45% 50%;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  padding: 40px 20px;
+}
 
-  & #menu_lateral {
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    margin-top: 230px;
+/* Menú lateral */
+#menu_lateral {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 60px;
+}
 
-    /* Menú principal */
-    & > ul {
-      width: 400px;
-      padding: 10px;
-      list-style: none;
+#menu_lateral ul {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
 
-      & > li {
-        background-color: var(--dark-green);
-        color: var(--white);
-        border: 1px solid var(--white);
-        padding: 10px 5px 10px 15px;
-        position: relative;
-        transition: background-color 0.3s ease;
-        cursor: pointer;
-      }
-    }
+#menu_lateral li {
+  background-color: var(--dark-green);
+  color: var(--white);
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#menu_lateral li:hover {
+  background-color: var(--light-green);
+  color: var(--dark-green);
+}
+
+/* Contenedor de imágenes */
+.images_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* Tarjeta de imagen */
+.images_container > div {
+  background-color: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.images_container > div:hover {
+  transform: translateY(-5px);
+}
+
+.images_container img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.images_container > div:hover img {
+  transform: scale(1.05);
+}
+
+/* === RESPONSIVE === */
+
+/* Tablets (≤ 1024px) */
+@media screen and (max-width: 1024px) {
+  div#galeria {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
   }
 
-  & .images_container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  #menu_lateral {
+    margin-top: 0;
+    padding: 0 10px 30px;
+  }
 
-    > div {
-      border: 1px solid black;
-      background-color: white;
-      margin: 20px;
-      width: 270px;
-      height: 200px;
+  #menu_lateral ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
 
-      & > div {
-        background-color: rgba(255, 255, 255, 0);
-        position: absolute;
-        width: 270px;
-        height: 200px;
-        transition: background-color 1s;
+  #menu_lateral li {
+    flex: 1 1 auto;
+    min-width: 140px;
+    text-align: center;
+    font-size: 15px;
+  }
 
-        &:hover {
-          background-color: rgba(255, 255, 255, 0.4);
-        }
+  .images_container {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
 
-        & a {
-          display: block;
-          width: 100%;
-          height: 100%;
-        }
-      }
+/* Móviles (≤ 600px) */
+@media screen and (max-width: 600px) {
+  div#galeria {
+    padding: 20px 10px;
+  }
 
-      & img {
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
-    }
+  #menu_lateral ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #menu_lateral li {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .images_container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .images_container > div {
+    width: 100%;
+    height: auto;
+  }
+
+  .images_container img {
+    height: auto;
+    aspect-ratio: 4 / 3;
   }
 }

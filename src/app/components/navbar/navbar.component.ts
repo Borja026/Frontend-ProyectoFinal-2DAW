@@ -8,6 +8,12 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
   constructor() { }
 
+  menuAbierto = false;
+
+  toggleMenu() {
+    this.menuAbierto = !this.menuAbierto;
+  }
+
   sesionIniciada(): boolean {
     const correoGuardado = localStorage.getItem('usuarioCorreo');
     return correoGuardado !== null && correoGuardado !== '';

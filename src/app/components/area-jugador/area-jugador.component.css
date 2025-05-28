@@ -1,60 +1,77 @@
 .perfil-container {
   max-width: 600px;
-  margin: 2rem auto;
+  margin: 3rem auto;
   padding: 2rem;
   background-color: var(--white);
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--dark-grey);
+  color: var(--text-grey);
 }
 
 .perfil-container h2 {
   text-align: center;
   color: var(--dark-green);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  font-size: 26px;
+  position: relative;
 }
 
 .foto {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .foto img {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid var(--light-green);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
 }
 
-form label,
-.ng-template p {
+.foto img:hover {
+  transform: scale(1.05);
+}
+
+/* Estilo para formularios en modo edición */
+form label {
   display: block;
   margin-bottom: 1rem;
   font-weight: 600;
+  font-size: 0.95rem;
 }
 
 form input,
-select {
+form select {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.6rem;
   border: 2px solid var(--light-green);
   border-radius: 8px;
   font-size: 1rem;
   margin-top: 0.25rem;
   background-color: var(--off-white);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+@media screen and (width < 700px) {
+  form input,
+  form select {
+    width: 90%;
+  }
 }
 
 form input:focus,
-select:focus {
+form select:focus {
   outline: none;
   border-color: var(--dark-green);
   background-color: var(--white);
 }
 
+/* Botones */
 .botones {
   display: flex;
   justify-content: space-between;
@@ -68,12 +85,13 @@ select:focus {
   padding: 0.75rem;
   border: none;
   border-radius: 8px;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
+/* Guardar */
 .botones button:first-child {
   background-color: var(--light-green);
   color: var(--dark-green);
@@ -82,8 +100,10 @@ select:focus {
 .botones button:first-child:hover {
   background-color: var(--dark-green);
   color: var(--white);
+  transform: translateY(-1px);
 }
 
+/* Cancelar */
 .botones button:last-child {
   background-color: var(--light-pink);
   color: var(--dark-grey);
@@ -92,8 +112,10 @@ select:focus {
 .botones button:last-child:hover {
   background-color: #e76a60;
   color: var(--white);
+  transform: translateY(-1px);
 }
 
+/* Botón Editar fuera de formulario */
 .perfil-container button {
   background-color: var(--light-green);
   color: var(--dark-green);
@@ -103,94 +125,73 @@ select:focus {
 .perfil-container button:hover {
   background-color: var(--dark-green);
   color: var(--white);
+  transform: translateY(-1px);
 }
 
-.ng-template p {
+/* Vista no editable */
+ng-template p,
+.perfil-container p {
   margin-bottom: 0.75rem;
   font-size: 1rem;
+  color: var(--text-grey);
 }
 
-.ng-template strong {
+ng-template strong,
+.perfil-container strong {
   color: var(--dark-green);
 }
 
-/* :root {
-  --dark-green: #112A16;
-  --light-green: #61A174;
-  --light-pink: #F6988F;
-  --off-white: #FFEAD4;
-  --white: #FFF5E9;
-  --black: #000000;
-  --dark-grey: #222222;
+/* Responsive: tablet */
+@media screen and (max-width: 768px) {
+  .perfil-container {
+    padding: 1.5rem;
+    margin: 2rem auto;
+  }
+
+  .foto img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .botones {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .botones button,
+  .perfil-container button {
+    width: 100%;
+  }
 }
 
-.form-container {
-  max-width: 800px;
-  margin: 2rem auto;
-  background: var(--white);
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(17, 42, 22, 0.3);
-  color: var(--dark-grey);
-}
+/* Responsive: móvil */
+@media screen and (max-width: 480px) {
+  .perfil-container {
+    width: 92%;
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
 
-.form-container h2 {
-  text-align: center;
-  color: var(--dark-green);
-  margin-bottom: 1.5rem;
-}
+  .perfil-container h2 {
+    font-size: 22px;
+  }
 
-.img-container {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
+  form label {
+    font-size: 0.9rem;
+  }
 
-.img-container img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--light-green);
-}
+  form input {
+    font-size: 0.95rem;
+  }
 
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
+  .foto img {
+    width: 100px;
+    height: 100px;
+  }
 
-label {
-  display: flex;
-  flex-direction: column;
-  font-weight: bold;
+  .botones button,
+  .perfil-container button {
+    font-size: 0.95rem;
+    padding: 0.65rem;
+  }
 }
-
-input, select {
-  padding: 0.5rem;
-  border: 1px solid var(--dark-grey);
-  border-radius: 5px;
-  background-color: var(--off-white);
-  color: var(--black);
-}
-
-.btn {
-  display: inline-block;
-  padding: 0.7rem 1.5rem;
-  background-color: var(--light-green);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 1rem;
-  transition: background-color 0.3s;
-}
-
-.btn:hover {
-  background-color: var(--dark-green);
-}
-
-.btn.update {
-  display: block;
-  margin: 2rem auto 0 auto;
-} */

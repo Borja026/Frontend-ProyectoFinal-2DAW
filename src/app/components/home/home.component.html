@@ -5,72 +5,79 @@
 
     <section>
         <!-- info 0 -->
-        <div>
-            <img src="https://borja.com.es/ProyectoDosDAW/imgs/image_home/mas_que_padel.png" alt="">
-        </div>
-        <div class="text">
-            <h2>Más que pádel, un lugar para tus comidas y eventos</h2>
-            <p>En Dream Padel ofrecemos nuestras instalaciones para la organización de eventos para empresas, incluyendo
-                torneos corporativos, actividades de team building y celebraciones privadas. Nuestras instalaciones
-                están preparadas para acoger todo tipo de eventos.</p>
-            <button routerLink="/contacto">Contactar ahora</button>
+        <div class="info-block">
+            <div>
+                <img src="https://borja.com.es/ProyectoDosDAW/imgs/image_home/mas_que_padel.png"
+                    alt="Comida y eventos en Dream Pádel">
+            </div>
+            <div class="text">
+                <h2>Más que pádel, un lugar para tus comidas y eventos</h2>
+                <p>En Dream Padel ofrecemos nuestras instalaciones para la organización de eventos para empresas,
+                    incluyendo torneos corporativos, actividades de team building y celebraciones privadas. Nuestras
+                    instalaciones están preparadas para acoger todo tipo de eventos.</p>
+                <button routerLink="/contacto">Contactar ahora</button>
+            </div>
         </div>
 
         <!-- info 1 -->
-        <div class="text">
-            <h2>Restaurante & Cafetería</h2>
-            <p>Nuestro restaurante y cafetería están pensados para ofrecerte el mejor ambiente donde relajarte después
-                de un partido, compartir momentos con amigos o disfrutar de una comida en nuestras amplias terrazas al
-                aire libre.</p>
-            <ul class="restaurant">
-                <li>Disfruta de nuestro menú diario disponible todos los días.</li>
-            </ul>
-            <ul class="restaurant">
-                <li>📍 Abierto de Lunes a Domingos para que disfrutes de la mejor experiencia en cualquier momento.</li>
-                <li>📞 Reserva tu mesa o consulta nuestro menú diario.</li>
-            </ul>
-        </div>
-        <div>
-            <img src="https://borja.com.es/ProyectoDosDAW/imgs/image_home/restaurante_y_cafeteria.png" alt="">
+        <div class="info-block">
+            <div class="text">
+                <h2>Restaurante & Cafetería</h2>
+                <p>Nuestro restaurante y cafetería están pensados para ofrecerte el mejor ambiente donde relajarte
+                    después de un partido, compartir momentos con amigos o disfrutar de una comida en nuestras amplias
+                    terrazas al aire libre.</p>
+                <ul class="restaurant">
+                    <li>Disfruta de nuestro menú diario disponible todos los días.</li>
+                </ul>
+                <ul class="restaurant">
+                    <li>📍 Abierto de Lunes a Domingos para que disfrutes de la mejor experiencia en cualquier momento.
+                    </li>
+                    <li>📞 Reserva tu mesa o consulta nuestro menú diario.</li>
+                </ul>
+            </div>
+            <div>
+                <img src="https://borja.com.es/ProyectoDosDAW/imgs/image_home/restaurante_y_cafeteria.png"
+                    alt="Restaurante y cafetería Dream Pádel">
+            </div>
         </div>
 
         <!-- info 2 -->
-        <div>
-            <img src="https://borja.com.es/ProyectoDosDAW/imgs/image_home/escuela_de_padel.png" alt="">
-        </div>
-        <div class="text">
-            <h2>ESCUELA DE PADEL PARA TODOS</h2>
-            <p>Nuestra Escuela de Pádel está diseñada para jugadores de todas las edades y niveles, con un enfoque
-                personalizado que combina técnica, táctica y preparación física. Tanto si quieres iniciarte en este
-                apasionante deporte como si buscas perfeccionar tu juego y competir, tenemos un programa adaptado para
-                ti.</p>
-            <ul class="list">
-                <li (click)="toggleSubMenu($event)">Escuela Infantil (5-17 años)
-                    <ul class="sublist">
-                        <li>Programas adaptados para desarrollar habilidades desde la coordinación básica hasta técnicas
-                            avanzadas, fomentando el trabajo en equipo y la diversión.</li>
-                    </ul>
-                </li>
-                <li (click)="toggleSubMenu($event)">Escuela de Competición Juvenil
-                    <ul class="sublist">
-                        <li>Entrenamientos intensivos para jóvenes que buscan competir a nivel regional y nacional, con
-                            seguimiento personalizado en torneos.</li>
-                    </ul>
-                </li>
-                <li (click)="toggleSubMenu($event)">Escuela de Adultos
-                    <ul class="sublist">
-                        <li>Clases segmentadas por niveles, enfocadas en mejorar la técnica, la táctica y la condición
-                            física, en un ambiente social y amigable.</li>
-                    </ul>
-                </li>
-                <li (click)="toggleSubMenu($event)">Clases Particulares
-                    <ul class="sublist">
-                        <li>Sesiones personalizadas para individuos, parejas o grupos pequeños, adaptadas a tus
-                            objetivos específicos.</li>
-                    </ul>
-                </li>
-            </ul>
-
+        <div class="info-block">
+            <div>
+                <img src="https://borja.com.es/ProyectoDosDAW/imgs/image_home/escuela_de_padel.png"
+                    alt="Escuela de pádel para todas las edades">
+            </div>
+            <div class="text">
+                <h2>ESCUELA DE PADEL PARA TODOS</h2>
+                <p>Nuestra Escuela de Pádel está diseñada para jugadores de todas las edades y niveles, con un enfoque
+                    personalizado que combina técnica, táctica y preparación física.</p>
+                <ul class="list">
+                    <li (click)="toggleSubMenu($event)">Escuela Infantil (5-17 años)
+                        <ul class="sublist">
+                            <li>Programas adaptados para desarrollar habilidades desde la coordinación básica hasta
+                                técnicas avanzadas, fomentando el trabajo en equipo y la diversión.</li>
+                        </ul>
+                    </li>
+                    <li (click)="toggleSubMenu($event)">Escuela de Competición Juvenil
+                        <ul class="sublist">
+                            <li>Entrenamientos intensivos para jóvenes que buscan competir a nivel regional y nacional,
+                                con seguimiento personalizado en torneos.</li>
+                        </ul>
+                    </li>
+                    <li (click)="toggleSubMenu($event)">Escuela de Adultos
+                        <ul class="sublist">
+                            <li>Clases segmentadas por niveles, enfocadas en mejorar la técnica, la táctica y la
+                                condición física, en un ambiente social y amigable.</li>
+                        </ul>
+                    </li>
+                    <li (click)="toggleSubMenu($event)">Clases Particulares
+                        <ul class="sublist">
+                            <li>Sesiones personalizadas para individuos, parejas o grupos pequeños, adaptadas a tus
+                                objetivos específicos.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </section>
 

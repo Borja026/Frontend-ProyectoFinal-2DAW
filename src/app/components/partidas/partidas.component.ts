@@ -39,24 +39,6 @@ export class PartidasComponent implements OnInit {
     private router: Router
   ) { }
 
-  // ngOnInit(): void {
-  //   const correo = localStorage.getItem('usuarioCorreo');
-  //   const nivel = localStorage.getItem('usuarioNivel');
-  //   const posicion = localStorage.getItem('usuarioPosicion');
-
-  //   if (correo) {
-  //     this.correoCliente = correo;
-  //     this.nivelCliente = nivel ? parseFloat(nivel) : 0;
-  //     this.posicionCliente = posicion || 'Indiferente';
-  //   }
-
-  //   const hoy = new Date();
-  //   hoy.setMinutes(hoy.getMinutes() - hoy.getTimezoneOffset());
-  //   const fechaLocal = hoy.toISOString().split('T')[0];
-
-  //   this.fechaSeleccionada = fechaLocal;
-  //   this.cargarReservasPorFecha(fechaLocal);
-  // }
   ngOnInit(): void {
     const correo = localStorage.getItem('usuarioCorreo');
     const nivel = localStorage.getItem('usuarioNivel');
@@ -125,7 +107,7 @@ export class PartidasComponent implements OnInit {
           pendingRequests--;
 
           if (pendingRequests === 0) {
-            // Ordenamos por hora y opcionalmente por pista
+            // Ordenamos por hora y por pista
             this.pistas = nuevasPistas.sort((a, b) => {
               const horaA = a.hora;
               const horaB = b.hora;

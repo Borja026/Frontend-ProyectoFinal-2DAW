@@ -10,7 +10,7 @@ describe('StripeCheckoutComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [StripeCheckoutComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(StripeCheckoutComponent);
     component = fixture.componentInstance;

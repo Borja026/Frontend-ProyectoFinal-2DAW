@@ -15,9 +15,9 @@ export interface Galeria {
 export class GaleriaService {
   private apiUrl = 'https://borja.com.es/ProyectoDosDAW/api_backend/public/galeria';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  
+
   getGaleria(): Observable<Galeria[]> {
     return this.http.get<any[]>(this.apiUrl).pipe(
       map(data => data.map(item => ({
@@ -26,5 +26,5 @@ export class GaleriaService {
       })))
     );
   }
-  
+
 }

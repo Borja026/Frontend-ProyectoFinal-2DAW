@@ -15,17 +15,12 @@
 
   <div class="pistas-container">
     <div class="pista" *ngFor="let pista of pistas; let i = index">
-      <img 
-        [src]="'https://borja.com.es/ProyectoDosDAW/imgs/pistas/' + pista.imagePista"
-        alt="Pista {{ pista.idPista }}"
-        [class.disabled]="pista.esPasada"
-        [attr.data-id]="pista.idPista"
-        [attr.data-hora]="pista.hora"
+      <img [src]="'https://borja.com.es/ProyectoDosDAW/imgs/pistas/' + pista.imagePista" alt="Pista {{ pista.idPista }}"
+        [class.disabled]="pista.esPasada" [attr.data-id]="pista.idPista" [attr.data-hora]="pista.hora"
         (click)="onImageClick($event, i)" />
 
       <div class="info">
         <strong>Pista {{ pista.idPista }}</strong> - {{ pista.hora }}<br />
-        <!-- Apuntados: {{ pista.apuntados }} / 4 -->
         Apuntados: {{ pista.apuntados }} / {{ pista.apuntados > 4 ? 5 : 4 }}
       </div>
 

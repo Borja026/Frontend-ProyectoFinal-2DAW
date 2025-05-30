@@ -8,7 +8,8 @@
 
     <div class="images_container">
         <div *ngFor="let image of galeriaFiltrada(categoriaSeleccionada)">
-            <img [src]="'https://borja.com.es/ProyectoDosDAW/api_backend/public/imgs/galeria/' + nombreCarpeta + '/' + image.nombre">
+            <img
+                [src]="'https://borja.com.es/ProyectoDosDAW/api_backend/public/imgs/galeria/' + nombreCarpeta + '/' + image.nombre">
         </div>
     </div>
 </div>

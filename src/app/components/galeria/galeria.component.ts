@@ -25,7 +25,6 @@ export class GaleriaComponent implements OnInit {
   ngOnInit(): void {
     this.galeriaService.getGaleria().subscribe({
       next: (data) => {
-        console.log('Galería recibida:', data);
         this.fotos = data;
       },
       error: (err) => {
@@ -35,7 +34,6 @@ export class GaleriaComponent implements OnInit {
 
     this.categoriasService.getCategorias().subscribe({
       next: (data) => {
-        console.log('Categorías recibidas:', data);
         this.categorias = data;
       },
       error: (err) => {
@@ -53,10 +51,8 @@ export class GaleriaComponent implements OnInit {
     return this.fotos.filter(image => image.idCategoria === idCategoria);
   }
 
-  
-  mostrarIdCatagoria(id: number, nombre: string){
-    console.log('ID de la categoría: ' + id);
-    console.log('Nombre de la categoría: ' + nombre);
+
+  mostrarIdCatagoria(id: number, nombre: string) {
     this.categoriaSeleccionada = id;
     this.nombreCarpeta = nombre;
   }

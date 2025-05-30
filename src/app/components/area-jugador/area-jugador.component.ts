@@ -22,7 +22,6 @@ export class AreaJugadorComponent implements OnInit {
       this.clienteService.getClientes().subscribe(clientes => {
         const encontrado = clientes.find(c => c.correo === correoGuardado);
         if (encontrado) {
-          // encontrado.fecha = new Date(encontrado.fecha);
           encontrado.fecha = encontrado.fecha;
           this.cliente = { ...encontrado } as Clientes;
           this.clienteOriginal = { ...encontrado } as Clientes;
@@ -61,7 +60,6 @@ export class AreaJugadorComponent implements OnInit {
           .subscribe({
             next: (respuesta) => {
               this.cliente!.foto = respuesta.nuevaImagen;
-              // this.cliente!.fecha = new Date(this.cliente!.fecha); // Aseguramos que la fecha sea un objeto Date
               this.cliente!.fecha = this.cliente!.fecha;
               this.guardarCliente();
             },

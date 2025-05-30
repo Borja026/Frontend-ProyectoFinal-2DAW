@@ -25,7 +25,6 @@ export interface Clientes {
 })
 export class ClientesService {
   private apiUrl = 'https://borja.com.es/ProyectoDosDAW/api_backend/public/clientes';
-  // private apiUrl = '../../../../../api_backend/public/clientes';
 
   constructor(private http: HttpClient) { }
 
@@ -37,7 +36,6 @@ export class ClientesService {
         nombre: item.nombre,
         apellidos: item.apellidos,
         fecha: new Date(item.fecha), // Convertimos a Date
-        // fecha: new Date(item.fecha), // Convertimos a Date
         foto: item.foto,
         telefono: Number(item.telefono), // Convertimos a número
         username: item.username,

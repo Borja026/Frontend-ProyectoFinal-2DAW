@@ -62,7 +62,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.clientesService.getClientes().subscribe({
       next: (data) => {
-        console.log('Clientes:', data);
         this.datosClientes = data;
       },
       error: (err) => {
@@ -72,7 +71,6 @@ export class LoginComponent implements OnInit {
 
     this.empleadosService.getEmpleados().subscribe({
       next: (data) => {
-        console.log('Empleados:', data);
         this.datosEmpleados = data;
       },
       error: (err) => {
@@ -119,9 +117,7 @@ export class LoginComponent implements OnInit {
   onLogin() {
     if (this.loginForm.valid) {
       const creds = this.loginForm.value;
-      console.log('Contraseña: ' + creds.password);
       const hashedPassword = CryptoJS.SHA256(creds.password).toString();
-      console.log('Contraseña hasheada: ' + hashedPassword);
 
       // Verificar si es cliente
       const cliente = this.datosClientes.find(c =>
@@ -129,18 +125,12 @@ export class LoginComponent implements OnInit {
       );
 
       if (cliente) {
-        console.log('Inicio de sesión como Cliente');
-        console.log('Datos Cliente BBDD:', cliente);
-        console.log('Fecha ISO:', cliente.fecha.toISOString().split('T')[0]);
-
-
         localStorage.setItem('usuarioTipo', 'cliente');
         localStorage.setItem('usuarioCorreo', cliente.correo);
         localStorage.setItem('usuarioNivel', cliente.nivel.toString());
         localStorage.setItem('usuarioPosicion', cliente.posicion);
         localStorage.setItem('usuarioFecha', cliente.fecha.toISOString().split('T')[0]);
         this.loginForm.reset();
-        // this.router.navigate(['/tarifas']);
         this.router.navigate(['/areaJugador']);
         return;
       }
@@ -151,7 +141,6 @@ export class LoginComponent implements OnInit {
       );
 
       if (empleado) {
-        console.log('Inicio de sesión como Empleado');
         localStorage.setItem('usuarioTipo', 'empleado');
         localStorage.setItem('usuarioCorreo', empleado.correo);
         window.location.href = 'https://borja.com.es/ProyectoDosDAW/api_backend/public/admin/clientes';
@@ -183,12 +172,9 @@ export class LoginComponent implements OnInit {
         recibeClases: null
       };
 
-      console.log('Nuevo cliente:', nuevoCliente);
 
       this.clientesService.registrarCliente(nuevoCliente).subscribe({
         next: (res) => {
-          console.log('Respuesta backend:', res);
-
           if (res.status === true) {
             localStorage.setItem('usuarioTipo', 'cliente');
             localStorage.setItem('usuarioCorreo', nuevoCliente.correo);
@@ -204,7 +190,6 @@ export class LoginComponent implements OnInit {
 
           const errores = err?.error?.errors;
 
-          // ✅ Mini trampa: si no hay errores, continuamos como si todo fue OK
           if (err.status === 400 && (Array.isArray(errores) && errores.length === 0)) {
             console.warn('Error 400 sin errores reales. Asumimos éxito.');
             localStorage.setItem('usuarioTipo', 'cliente');

@@ -18,7 +18,7 @@ export class CategoriasService {
 
   constructor(private http: HttpClient) { }
 
-  
+
   getCategorias(): Observable<Categorias[]> {
     return this.http.get<any[]>(this.apiUrl).pipe(
       map(data => data.map(item => ({

@@ -104,7 +104,7 @@
     align-items: center;
     background-color: var(--dark-green);
     padding: 20px 0;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .nav-links.open {

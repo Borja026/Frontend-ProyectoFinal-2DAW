@@ -8,7 +8,7 @@ export class EmailService {
   private serviceIdCancelacion = 'service_2bdkzfg';
   private templateIdCancelacion = 'template_05qpt1z';
   private publicKeyCancelacion = 'lQm0BDZYAnXZ-j5Uy';
-  
+
   private serviceIdConfirmacion = 'service_rqg1cbd';
   private templateIdConfirmacion = 'template_tdb24cb';
   private publicKeyConfirmacion = 'TWQizTGjcbOe7uKU_';

@@ -21,9 +21,9 @@ export interface Empleados {
 export class EmpleadosService {
   private apiUrl = 'https://borja.com.es/ProyectoDosDAW/api_backend/public/empleados';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  
+
   getEmpleados(): Observable<Empleados[]> {
     return this.http.get<any[]>(this.apiUrl).pipe(
       map(data => data.map(item => ({
@@ -38,5 +38,5 @@ export class EmpleadosService {
       })))
     );
   }
-  
+
 }

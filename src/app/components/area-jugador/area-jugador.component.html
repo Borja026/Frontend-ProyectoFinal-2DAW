@@ -2,7 +2,7 @@
   <h2>Mi Perfil</h2>
 
   <div class="foto" *ngIf="cliente.foto == null || cliente.foto == ''">
-    <img src="https://borja.com.es/ProyectoDosDAW/api_backend/public/clientes/default_user.png"
+    <img src="https://borja.com.es/ProyectoDosDAW/api_backend/public/imgs/clientes/default_user.png"
       alt="Foto del cliente" />
   </div>
   <div class="foto" *ngIf='cliente.foto !== null'>
@@ -19,8 +19,6 @@
     </label>
     <label>Nombre: <input [(ngModel)]="cliente.nombre" name="nombre" /></label>
     <label>Apellidos: <input [(ngModel)]="cliente.apellidos" name="apellidos" /></label>
-    <!-- <label>Fecha de nacimiento: <input type="date" [(ngModel)]="cliente.fecha" name="fecha" /></label> -->
-    <label>Fecha de nacimiento: <input type="date" [ngModel]="formatearFechaInput(cliente.fecha)" (ngModelChange)="cliente.fecha = $event" name="fecha" /></label>
     <label>Teléfono: <input [(ngModel)]="cliente.telefono" name="telefono" /></label>
     <label>Username: <input [(ngModel)]="cliente.username" name="username" /></label>
     <label>Contraseña: <input type="password" [(ngModel)]="cliente.password" name="password" /></label>
@@ -34,9 +32,6 @@
   <ng-template #vista>
     <p><strong>Nombre:</strong> {{ cliente.nombre }}</p>
     <p><strong>Apellidos:</strong> {{ cliente.apellidos }}</p>
-    <p><strong>Fecha de nacimiento:</strong> {{ cliente.fecha }}</p>
-    <p><strong>Fecha de nacimiento:</strong> {{ cliente.fecha | date:'dd/MM/yyyy' }}</p>
-
     <p><strong>Teléfono:</strong> {{ cliente.telefono }}</p>
     <p><strong>Username:</strong> {{ cliente.username }}</p>
     <p><strong>Contraseña:</strong> ••••••••••••</p>

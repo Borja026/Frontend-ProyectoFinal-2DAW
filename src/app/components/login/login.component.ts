@@ -131,11 +131,14 @@ export class LoginComponent implements OnInit {
       if (cliente) {
         console.log('Inicio de sesión como Cliente');
         console.log('Datos Cliente BBDD:', cliente);
+        console.log('Fecha ISO:', cliente.fecha.toISOString().split('T')[0]);
+
 
         localStorage.setItem('usuarioTipo', 'cliente');
         localStorage.setItem('usuarioCorreo', cliente.correo);
         localStorage.setItem('usuarioNivel', cliente.nivel.toString());
         localStorage.setItem('usuarioPosicion', cliente.posicion);
+        localStorage.setItem('usuarioFecha', cliente.fecha.toISOString().split('T')[0]);
         this.loginForm.reset();
         // this.router.navigate(['/tarifas']);
         this.router.navigate(['/areaJugador']);
@@ -189,6 +192,7 @@ export class LoginComponent implements OnInit {
           if (res.status === true) {
             localStorage.setItem('usuarioTipo', 'cliente');
             localStorage.setItem('usuarioCorreo', nuevoCliente.correo);
+            localStorage.setItem('usuarioFecha', new Date(nuevoCliente.fecha).toISOString().split('T')[0]);
             this.registroForm.reset();
             this.router.navigate(['/areaJugador']);
           } else {
@@ -205,6 +209,7 @@ export class LoginComponent implements OnInit {
             console.warn('Error 400 sin errores reales. Asumimos éxito.');
             localStorage.setItem('usuarioTipo', 'cliente');
             localStorage.setItem('usuarioCorreo', nuevoCliente.correo);
+            localStorage.setItem('usuarioFecha', new Date(nuevoCliente.fecha).toISOString().split('T')[0]);
             this.registroForm.reset();
             this.router.navigate(['/areaJugador']);
             return;

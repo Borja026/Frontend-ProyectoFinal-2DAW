@@ -39,6 +39,24 @@ export class PartidasComponent implements OnInit {
     private router: Router
   ) { }
 
+  // ngOnInit(): void {
+  //   const correo = localStorage.getItem('usuarioCorreo');
+  //   const nivel = localStorage.getItem('usuarioNivel');
+  //   const posicion = localStorage.getItem('usuarioPosicion');
+
+  //   if (correo) {
+  //     this.correoCliente = correo;
+  //     this.nivelCliente = nivel ? parseFloat(nivel) : 0;
+  //     this.posicionCliente = posicion || 'Indiferente';
+  //   }
+
+  //   const hoy = new Date();
+  //   hoy.setMinutes(hoy.getMinutes() - hoy.getTimezoneOffset());
+  //   const fechaLocal = hoy.toISOString().split('T')[0];
+
+  //   this.fechaSeleccionada = fechaLocal;
+  //   this.cargarReservasPorFecha(fechaLocal);
+  // }
   ngOnInit(): void {
     const correo = localStorage.getItem('usuarioCorreo');
     const nivel = localStorage.getItem('usuarioNivel');
@@ -56,46 +74,25 @@ export class PartidasComponent implements OnInit {
 
     this.fechaSeleccionada = fechaLocal;
     this.cargarReservasPorFecha(fechaLocal);
+
+    // ✅ Comprobamos si hay una reserva pendiente de correo
+    const reservaPendiente = localStorage.getItem('reservaPendienteCorreo');
+    if (reservaPendiente) {
+      const reserva = JSON.parse(reservaPendiente);
+
+      this.emailService.enviarCorreoConfirmacionReserva(
+        reserva.correoClientes,
+        reserva.fechaHora,
+        reserva.idPistas,
+        reserva.numPersonas,
+        reserva.mediaNivel
+      );
+
+      localStorage.removeItem('reservaPendienteCorreo'); // evitar reenvíos
+    }
   }
 
-  // cargarReservasPorFecha(fecha: string) {
-  //   this.fechaSeleccionada = fecha;
-  //   const horas = ['09:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00', '22:30'];
-  //   const pistasIDs = [1, 2, 3];
-  //   const nuevasPistas: PistaReservada[] = [];
-  //   let pendingRequests = 0;
 
-  //   pistasIDs.forEach(id => {
-  //     horas.forEach(hora => {
-  //       pendingRequests++;
-  //       this.partidasService.getJugadoresPorPista(`${fecha} ${hora}:00`, id).subscribe(jugadores => {
-  //         const jugadoresActivos = jugadores.filter(j => j.cancelada !== '1');
-  //         const totalPersonas = jugadoresActivos.reduce((total, j) => total + Number(j.numPersonas || 0), 0);
-  //         const reservadoPorClub = jugadoresActivos.some(j => j.correoClientes === 'club@dreampadel.com');
-
-  //         const fechaHoraPista = new Date(`${fecha}T${hora}:00`);
-  //         fechaHoraPista.setMinutes(fechaHoraPista.getMinutes() - fechaHoraPista.getTimezoneOffset());
-  //         const esPasada = fechaHoraPista.getTime() < new Date().getTime();
-
-  //         const pistaData: PistaReservada = {
-  //           idPista: id,
-  //           hora: hora,
-  //           apuntados: totalPersonas,
-  //           esPasada: esPasada,
-  //           imagePista: this.obtenerImagenPista(totalPersonas, reservadoPorClub, esPasada),
-  //           jugadores: jugadoresActivos
-  //         };
-
-  //         nuevasPistas.push(pistaData);
-  //         pendingRequests--;
-
-  //         if (pendingRequests === 0) {
-  //           this.pistas = nuevasPistas.sort((a, b) => a.idPista - b.idPista || a.hora.localeCompare(b.hora));
-  //         }
-  //       });
-  //     });
-  //   });
-  // }
   cargarReservasPorFecha(fecha: string) {
     this.fechaSeleccionada = fecha;
     const horas = ['09:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00', '22:30'];
@@ -197,6 +194,7 @@ export class PartidasComponent implements OnInit {
 
     this.partidasService.pagarYReservar(reserva).subscribe({
       next: (res) => {
+        localStorage.setItem('reservaPendienteCorreo', JSON.stringify(reserva));
         window.location.href = res.url;
       },
       error: err => alert(err.error?.message || 'Error al iniciar el pago.')
@@ -245,6 +243,7 @@ export class PartidasComponent implements OnInit {
 
     this.partidasService.pagarYReservar(reserva).subscribe({
       next: (res) => {
+        localStorage.setItem('reservaPendienteCorreo', JSON.stringify(reserva));
         window.location.href = res.url;
       },
       error: err => alert(err.error?.message || 'Error al iniciar el pago.')

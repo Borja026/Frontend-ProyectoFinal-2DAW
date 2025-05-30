@@ -37,6 +37,7 @@ export class ClientesService {
         nombre: item.nombre,
         apellidos: item.apellidos,
         fecha: new Date(item.fecha), // Convertimos a Date
+        // fecha: new Date(item.fecha), // Convertimos a Date
         foto: item.foto,
         telefono: Number(item.telefono), // Convertimos a número
         username: item.username,
